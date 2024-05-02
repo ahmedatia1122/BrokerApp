@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+                 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:vm="clr-namespace:NewBrokerApp.ViewModels" 
+             x:Class="NewBrokerApp.Views.Company.EditProjectPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+                     <StackLayout Grid.Row="0"  HeightRequest="70" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="Fill" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,10,20,10">
+                    <Image Source="{Static resx:AppResources.TopArrow}" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="10" HeightRequest="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="{Static resx:AppResources.Projects}" x:Name="lblTitle" Margin="20,0,20,0" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" FontSize="20"  HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="stkBasicInfo" IsVisible="false" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <StackLayout Margin="20" Spacing="20">
+                    <Frame HorizontalOptions="FillAndExpand" HasShadow="False" BorderColor="#e5e5e5" CornerRadius="10" Padding="5">
+                        <custom:BorderlessEntry x:Name="textName" Text="{Binding ProjectDetailsItem.Name}" Placeholder="Project Title" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                    </Frame>
+                    <StackLayout Margin="0,20,0,0">
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="20" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.ProjectDescription}" HorizontalOptions="StartAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+
+                        </StackLayout>
+                        <Frame HasShadow="False" BorderColor="#e5e5e5" CornerRadius="10">
+                            <custom:CustomEditor HeightRequest="120" Text="{Binding ProjectDetailsItem.Description}" Placeholder="{Static resx:AppResources.AddDescriptionAndDetails}"></custom:CustomEditor>
+                        </Frame>
+                    </StackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="10,40,10,10">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" BorderColor="Black" CornerRadius="5">
+                            <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                            <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+
+
+                </StackLayout>
+                <ffimageloading:CachedImage VerticalOptions="EndAndExpand" HeightRequest="200" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" IsVisible="false" Margin="20,20,20,20" VerticalOptions="FillAndExpand" x:Name="stkPhoto">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <ffimageloadingsvg:SvgCachedImage Source="LayoutBlue.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.ProjectCompoundPhotos}"  FontSize="16" FontAttributes="Bold" TextColor="Black"></Label>
+                        </StackLayout>
+                        <CollectionView ItemsSource="{Binding PropertyPhotos}" HeightRequest="100"  >
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                        Span="3" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*" Padding="10">
+                                        <ffimageloading:CachedImage  Source="{Binding .}"  HeightRequest="100" ></ffimageloading:CachedImage>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <CollectionView x:Name="col_morePhotos"  IsVisible="false" ItemsSource="{Binding PropertyPhotosNext}" HeightRequest="99"  >
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                        Span="3" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*" Padding="10">
+                                        <ffimageloading:CachedImage  Source="{Binding .}"  HeightRequest="100" ></ffimageloading:CachedImage>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" NumberOfTapsRequired="1"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Frame HorizontalOptions="FillAndExpand" x:Name="frmPhoto"  HasShadow="False" Padding="10" BorderColor="#e3e3e3" CornerRadius="5" BackgroundColor="White">
+                            <Label Text="{Static resx:AppResources.AddMorePhotos}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_11"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_10"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <ffimageloading:CachedImage VerticalOptions="EndAndExpand" HeightRequest="200" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" Grid.Row="1" IsVisible="false" Margin="20,20,20,20" VerticalOptions="FillAndExpand" x:Name="stkLayout">
+                <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <ffimageloadingsvg:SvgCachedImage Source="LayoutBlue.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                        <Label Text="{Static resx:AppResources.ProjectCompoundLayout}"  FontSize="16" FontAttributes="Bold" TextColor="Black"></Label>
+                    </StackLayout>
+                    <CollectionView ItemsSource="{Binding PropertyLayouts}" HeightRequest="100"  >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                        Span="3" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*" Padding="10">
+                                    <ffimageloading:CachedImage  Source="{Binding .}"  HeightRequest="100" ></ffimageloading:CachedImage>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6" NumberOfTapsRequired="1"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <CollectionView x:Name="col_moreLayout"  IsVisible="false" ItemsSource="{Binding PropertyLayoutNext}" HeightRequest="99"  >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                        Span="3" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*" Padding="10">
+                                    <ffimageloading:CachedImage  Source="{Binding .}"  HeightRequest="100" ></ffimageloading:CachedImage>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7" NumberOfTapsRequired="1"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Frame HorizontalOptions="FillAndExpand" x:Name="frmLayout"  HasShadow="False" Padding="10" BorderColor="#e3e3e3" CornerRadius="5" BackgroundColor="White">
+                        <Label Text="{Static resx:AppResources.AddMorePhotos}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                            <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_12"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                            <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_13"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                    <ffimageloading:CachedImage VerticalOptions="EndAndExpand" HeightRequest="200" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+
+                </StackLayout>
+
+            </StackLayout>
+            <StackLayout IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1"></StackLayout>
+            <ScrollView  Grid.Row="1" Margin="20" x:Name="stkProject" IsVisible="false">
+                <StackLayout>
+                    <Frame CornerRadius="10" BackgroundColor="#034C82" HeightRequest="40" Padding="5" >
+                        <Label Text="{Static resx:AppResources.AddProjectCompoundLocation}" HorizontalOptions="CenterAndExpand" FontSize="19" HorizontalTextAlignment="Center" TextColor="White"   VerticalTextAlignment="Center"></Label>
+                    </Frame>
+                    <StackLayout Spacing="15" Margin="0,30,0,0">
+                        <CollectionView HeightRequest="{Binding HeightRequest}" BackgroundColor="White"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="None"
+                                        HorizontalScrollBarVisibility="Never"
+                                ItemsSource="{Binding AddsItems}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="15" HorizontalItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions=".65*,.15*,.15*,.15*" RowDefinitions="50" ColumnSpacing="20" BackgroundColor="Transparent">
+                                        <Frame Grid.Column="0" Padding="10" HeightRequest="30" HasShadow="False" BackgroundColor="#EBEBEB" CornerRadius="5">
+                                            <Label Text="{Binding Title}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="1" HasShadow="False" HeightRequest="30" Margin="0,5,0,5" Padding="5"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                            <ffimageloading:CachedImage Source="{Binding IsImage}" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0">
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProjectViewModel}},Path=ChangeProjectStatusCommand }" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>
+                                        </Frame>
+                                        <Frame Grid.Column="2" HasShadow="False" HeightRequest="30" Margin="0,5,0,5" Padding="5"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                            <ffimageloading:CachedImage Source="edit" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" >
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProjectViewModel}},Path=OpenProjectAdEditDetailsCommand }" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>
+                                        </Frame>
+                                        <Frame Grid.Column="3" HasShadow="False" HeightRequest="30" Margin="0,5,0,5" Padding="5"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                            <ffimageloading:CachedImage Source="delete" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Column="0" >
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_14" NumberOfTapsRequired="1"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    <Grid ColumnDefinitions=".80*,.20*"  ColumnSpacing="15" Margin="0,5,0,0">
+                        <Frame Grid.Column="0" Padding="10" HeightRequest="30" HasShadow="False" BackgroundColor="#EBEBEB" CornerRadius="7">
+                            <Label Text="{Static resx:AppResources.AddProperty1}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                        </Frame>
+                        <Frame Grid.Column="1" HasShadow="False" Margin="0,5,0,5" HeightRequest="30" Padding="5"  BackgroundColor="#0C4B81" CornerRadius="7">
+                            <Label Text="+" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="white" FontSize="20" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenAddDetailsCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="7" BorderColor="Black">
+                            <Label Text="{Static resx:AppResources.Save}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LoadEditProjectCommand }" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="1" HasShadow="False" Padding="10" IsEnabled="{Binding IsEnabledPayment}" BackgroundColor="#EBEBEB" CornerRadius="7">
+                            <Label Text="{Static resx:AppResources.Payment}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Command="{Binding PaymentProjectCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                    <ffimageloading:CachedImage VerticalOptions="EndAndExpand" HeightRequest="200" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+                </StackLayout>
+            </ScrollView>
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

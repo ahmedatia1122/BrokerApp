@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:NewBrokerApp.Converters"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="NewBrokerApp.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converters:ImageSourceConverter x:Key="ImageSourceConverter"/>
+            <Color x:Key="Primary">White</Color>
+            <Color x:Key="MenuText">#000</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="#FFFFFF"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="15"></Setter>
+              
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="Regular" />
+            </Style>
+            <Style x:Key="LightText" TargetType="Label">
+                <Setter Property="FontFamily"          Value="Light"/>
+                <Setter Property="FontSize"          Value="16"/>
+            </Style>
+            <Style x:Key="MediumText" TargetType="Label">
+                <Setter Property="FontFamily"          Value="Medium"/>
+                <Setter Property="FontSize"          Value="16"/>
+            </Style>
+
+            <Color x:Key="SfCalendarInlineTextColor">#034C82</Color>
+            <Color x:Key="SfCalendarBlackoutColor">#034C82</Color>
+            <Color x:Key="SfCalendarDateSelectionColor">#034C82</Color>
+            <Color x:Key="SfCalendarInlineBackgroundColor">#F5F5F5</Color>
+            <Color x:Key="SfCalendarSelectedDayTextColor">#FFFFFF</Color>
+
+            <Color x:Key="SfCalendarWeekDayBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="SfCalendarWeekDayTextColor">#707070</Color>
+            <Color x:Key="SfCalendarDisabledBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="SfCalendarDisabledTextColor">#C2C2C2</Color>
+            <Color x:Key="SfCalendarPreviousMonthBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="SfCalendarPreviousMonthTextColor">#C2C2C2</Color>
+            <Color x:Key="SfCalendarCurrentMonthBackgroundColor">#FFFFFF</Color>
+
+            <Color x:Key="SfCalendarDayHeaderTextColor">#707070</Color>
+            <Color x:Key="SfCalendarDayHeaderBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="SfCalendarWeekEndBackgroundColor">#C2C2C2</Color>
+            <Color x:Key="SfCalendarHeaderBackgroundColor">#FFFFFF</Color>
+            
+
+
+        </ResourceDictionary>  
+        
+    </Application.Resources>
+</Application>

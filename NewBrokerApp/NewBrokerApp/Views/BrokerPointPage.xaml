@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Shell.NavBarIsVisible="False"
+               xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+             xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:panck="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="NewBrokerApp.Views.BrokerPointPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto">
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="5,0,10,0">
+
+                <StackLayout VerticalOptions="CenterAndExpand" HeightRequest="40"  BackgroundColor="Transparent">
+                    <ffimageloading:CachedImage   Source="{Static resx:AppResources.TopArrow}" VerticalOptions="CenterAndExpand" Aspect="AspectFit" HeightRequest="15" WidthRequest="50" HorizontalOptions="Start"  ></ffimageloading:CachedImage>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackUpCommand}" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Text="{Static resx:AppResources.Points}" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView ItemsSource="{Binding AdvertisementPointItems.Advertisements}" Margin="15" >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="19" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Frame BorderColor="#e3e3e3" CornerRadius="15" HasShadow="False">
+                                <StackLayout>
+                                    <Label Text="{Binding Id}" IsVisible="false"></Label>
+                                    <StackLayout Orientation="Horizontal"> 
+                                        <Label Text="{Binding Title}" FontSize="20" TextColor="Black"></Label>
+                                        <Label Text="{Binding Points}" HorizontalOptions="EndAndExpand" FontSize="18" TextColor="Black"></Label>
+                                       
+                                    </StackLayout>
+
+                                
+
+                                </StackLayout>
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Grid.Row="2" x:Name="stkFooter" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+            <ContentView    Grid.Row="1"   Opacity=".4" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator VerticalOptions="Center" WidthRequest="50" HorizontalOptions="Center" Color="#034C82" IsRunning="True"/>
+            </ContentView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

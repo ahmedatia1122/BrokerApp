@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+   xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pankeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             Title="Add New Property"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+     xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="White"
+    Shell.NavBarIsVisible="False"
+NavigationPage.HasNavigationBar="false"
+    NavigationPage.HasBackButton="False"
+    xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+      xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors"
+    xmlns:vm="clr-namespace:NewBrokerApp.ViewModels"
+             x:Class="NewBrokerApp.Views.HomePage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto">
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1"  Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkPrice">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="5" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="15,*">
+                            <ffimageloadingsvg:SvgCachedImage Source="bluePrice.svg"></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Keyboard="Numeric" Placeholder="{Static resx:AppResources.Price}" Text="{Binding  AdvertisementModel.Price}"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <Label Text="{Static resx:AppResources.inEgp}" Grid.Column="1" Grid.Row="1"></Label>
+                        </Grid>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="BlueFacality.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.PaymentFacilities}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+ VerticalScrollBarVisibility="Never" SelectionMode="Single"
+        HorizontalScrollBarVisibility="Never"  x:Name="Col_Payment"
+    SelectionChanged="CollectionView_SelectionChanged_10"
+   SelectedItem="{Binding SelectedPaymentFacality}"
+ItemsSource="{Binding PropertyPaymentFacaility}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"   Span="2"  VerticalItemSpacing="15"  />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="5,0,5,0" BackgroundColor="Transparent">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid ColumnDefinitions="*">
+
+
+                                                <pankace:PancakeView x:Name="panckData" BackgroundColor="#EBEBEB" Grid.Column="0"  CornerRadius="5" Padding="5">
+                                                    <pankace:PancakeView.Border>
+                                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                    </pankace:PancakeView.Border>
+                                                    <Label Text="{Binding Name}" x:Name="_label" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+
+                                                </pankace:PancakeView>
+
+                                            </Grid>
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <CollectionView HeightRequest="40"  IsVisible="false"  BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                             VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                    HorizontalScrollBarVisibility="Never"  x:Name="Col_PaymentRent"
+                                SelectionChanged="CollectionView_SelectionChanged_10"
+                                SelectedItem="{Binding SelectedPaymentFacality}"
+                            ItemsSource="{Binding PropertyPaymentFacaility}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"   Span="3"  VerticalItemSpacing="15"  />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="5,0,5,0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid ColumnDefinitions="*">
+
+
+                                                <pankace:PancakeView x:Name="panckData" BackgroundColor="#EBEBEB" Grid.Column="0"  CornerRadius="5" Padding="5">
+                                                    <pankace:PancakeView.Border>
+                                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                    </pankace:PancakeView.Border>
+                                                    <Label Text="{Binding Name}" x:Name="_label" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+
+                                                </pankace:PancakeView>
+
+                                            </Grid>
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!--<Grid ColumnDefinitions="*,*" HeightRequest="40">
+                            <Frame BackgroundColor="#EBEBEB" Padding="10" CornerRadius="5"  HasShadow="False">
+                                <Label Text="Allowed" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                            </Frame>
+                            <Frame  BackgroundColor="#EBEBEB" Padding="10" CornerRadius="5" Grid.Column="1" HasShadow="False">
+                                <Label Text="Not Allowed" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                            </Frame>
+                        </Grid>-->
+                        </StackLayout>
+
+                        <StackLayout IsVisible="false">
+                            <Grid ColumnDefinitions="30,*">
+                                <ffimageloading:CachedImage Source="Chat"></ffimageloading:CachedImage>
+                                <pankace:PancakeView Grid.Column="1">
+                                    <pankace:PancakeView.Border >
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <custom:BorderlessEntry Placeholder="{Static resx:AppResources.DeliveryDate}"></custom:BorderlessEntry>
+                                </pankace:PancakeView>
+
+                            </Grid>
+                            <StackLayout Orientation="Horizontal"  Margin="0,20,0,20">
+                                <ffimageloading:CachedImage Source="Chat.png"></ffimageloading:CachedImage>
+                                <Label Text="{Static resx:AppResources.Installment}" FontAttributes="Bold" TextColor="Black" FontSize="20"></Label>
+                            </StackLayout>
+                            <Frame Padding="10" BorderColor="WhiteSmoke">
+
+                                <StackLayout Spacing="20" Padding="10">
+
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="{Static resx:AppResources.DownPayment}"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Monthlyinstallment}"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Yearlyinstallment}"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="{Static resx:AppResources.NumberofYears}"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BorderColor="Black" BackgroundColor="White" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <Image Source="imgBackground2.png" VerticalOptions="EndAndExpand"></Image>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="stkFooter">
+                
+            </StackLayout>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

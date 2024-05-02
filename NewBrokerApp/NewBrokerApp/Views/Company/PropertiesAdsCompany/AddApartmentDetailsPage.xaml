@@ -1,0 +1,1098 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:usercontrols="clr-namespace:DropdownMenu.UserControls;assembly=DropdownMenu"
+             xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+            xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             BackgroundColor="White"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Shell.NavBarIsVisible="False"
+         NavigationPage.HasNavigationBar="false"
+             NavigationPage.HasBackButton="False"
+             xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+               xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:vm="clr-namespace:NewBrokerApp.ViewModels"
+             x:Class="NewBrokerApp.Views.Company.PropertiesAdsCompany.AddApartmentDetailsPage">
+    <ContentPage.Content>
+
+        <Grid  RowDefinitions="Auto,Auto,*">
+
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="20,0,20,0">
+
+                <StackLayout VerticalOptions="CenterAndExpand" HeightRequest="40">
+                    <Image Source="{Static resx:AppResources.TopArrow}" VerticalOptions="CenterAndExpand" Aspect="AspectFit" HeightRequest="15" WidthRequest="50" HorizontalOptions="Start" ></Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_28" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label x:Name="lblTitle"  HorizontalOptions="CenterAndExpand" BackgroundColor="White" FontAttributes="Bold"  FontSize="18" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+
+
+            </StackLayout>
+            <StackLayout Padding="6" Grid.Row="1" Margin="10,0,10,10">
+                <dxe:ComboBoxEdit IsDropDownOpen="False" IsEnabled="False" IsDropDownIconVisible="False"
+              BorderColor="#F5F5F5"
+                FocusedBorderColor="#F5F5F5"
+                    PlaceholderText="{Static resx:AppResources.BasicDetails}"
+                    PlaceholderColor="#999CA0"
+                    TextFontSize="15"
+                    SelectedItem="{Binding SelectedPropertyName}"
+                   SelectionChanged="ComboBoxEdit_SelectionChanged_1"
+                     LabelText="{Static resx:AppResources.BasicDetails}"
+              Margin="3"
+                ItemsSource="{Binding PropertyName}"
+                DisplayMember="Property"
+                VerticalOptions="Start"
+                 IsLabelFloating="True"
+                BoxMinWidth="10"
+              
+         CornerRadius="10"
+                TextHorizontalAlignment="Start"
+               >
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout  Margin="10" Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="Rightsign.svg" IsVisible="{Binding Edit}" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Binding Property}" TextColor="Black" FontSize="18"></Label>
+                                <Label Text="{Static resx:AppResources.Edit}" IsVisible="{Binding Edit}" TextColor="#034C82" HorizontalOptions="EndAndExpand"  FontSize="18"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+            </StackLayout>
+            <StackLayout  HorizontalOptions="FillAndExpand" x:Name="stkBasic" IsVisible="True" VerticalOptions="FillAndExpand" Grid.Row="2">
+
+                <StackLayout Margin="20" Spacing="25">
+
+                   
+                    <Frame HorizontalOptions="FillAndExpand" HasShadow="False" BorderColor="#F5F5F5" CornerRadius="10" Padding="5" VerticalOptions="FillAndExpand">
+                        <custom:BorderlessEntry Text="{Binding AdvertisementModel.Title}" TextChanged="BorderlessEntry_TextChanged"  Placeholder="{Static resx:AppResources.AdTitle}" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                    </Frame>
+                    <Label Text="{Static resx:AppResources.writeTitle}" TextColor="#999CA0" FontSize="13" ></Label>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" BorderColor="Black" CornerRadius="5">
+                            <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                            <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+                <ffimageloading:CachedImage HeightRequest="200" VerticalOptions="EndAndExpand" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+
+            </StackLayout>
+            <StackLayout Grid.Row="2" IsVisible="false"  x:Name="StkAddress" Margin="20,0,20,10">
+                <ScrollView HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <!--<Frame Padding="6" Grid.Row="0" Margin="0" BorderColor="#F5F5F5" HasShadow="False">
+                    <StackLayout Orientation="Horizontal" Margin="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{Static resx:AppResources.City}" x:Name="txtCity" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#999CA0" FontSize="16" ></Label>
+                        <ffimageloading:CachedImage Source="downArrow.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand"></ffimageloading:CachedImage>
+
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                    </Frame.GestureRecognizers>
+                </Frame>-->
+                        <dxe:ComboBoxEdit
+              BorderColor="#F5F5F5"
+                FocusedBorderColor="#F5F5F5"
+                    PlaceholderText="{Static resx:AppResources.Government}"
+                    PlaceholderColor="#999CA0"
+                    TextFontSize="15"
+                    SelectedItem="{Binding SelectGovernment}"
+                    LabelText="{Static resx:AppResources.Government}"
+              Margin="3"
+                ItemsSource="{Binding Governments}"
+                DisplayMember="Name"
+                VerticalOptions="Start"
+                 IsLabelFloating="True"
+                BoxMinWidth="10"
+              
+         CornerRadius="10"
+                TextHorizontalAlignment="Start"
+               >
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout WidthRequest="100" Margin="10">
+                                        <Label Text="{Binding Name}" Margin="10"></Label>
+
+                                    </StackLayout>
+
+
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>
+                        <dxe:ComboBoxEdit IsVisible="false"
+              BorderColor="#F5F5F5"
+                FocusedBorderColor="#F5F5F5"
+                    PlaceholderText="{Static resx:AppResources.City}"
+                    PlaceholderColor="#999CA0"
+                    TextFontSize="15"
+                    SelectedItem="{Binding SelectCity}"
+                    LabelText="{Static resx:AppResources.City}"
+              Margin="3"
+                ItemsSource="{Binding Cities}"
+                DisplayMember="Name"
+                VerticalOptions="Start"
+                 IsLabelFloating="True"
+                BoxMinWidth="10"
+              
+         CornerRadius="10"
+                TextHorizontalAlignment="Start"
+               >
+                            <dxe:ComboBoxEdit.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout WidthRequest="100" Margin="10">
+                                        <Label Text="{Binding Name}" Margin="10"></Label>
+
+                                    </StackLayout>
+
+
+                                </DataTemplate>
+                            </dxe:ComboBoxEdit.ItemTemplate>
+                        </dxe:ComboBoxEdit>
+                        <Frame  HasShadow="False" Padding="5" BackgroundColor="White" CornerRadius="5" BorderColor="#F5F5F5">
+                            <custom:BorderlessEntry TextChanged="BorderlessEntry_TextChanged_1" Text="{Binding AdvertisementModel.Compound}" Placeholder="{Static resx:AppResources.NelCompound}" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                        </Frame>
+                        <Frame  HasShadow="False"  Padding="5"  BackgroundColor="White" BorderColor="#F5F5F5" CornerRadius="5">
+                            <custom:BorderlessEntry TextChanged="BorderlessEntry_TextChanged_2" Placeholder="{Static resx:AppResources.Street}" Text="{Binding AdvertisementModel.Street}" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                        </Frame>
+                        <Frame  HasShadow="False" Padding="5" BackgroundColor="White" CornerRadius="5"  BorderColor="#F5F5F5">
+                            <custom:BorderlessEntry TextChanged="BorderlessEntry_TextChanged_3"  Text="{Binding AdvertisementModel.BuildingNumber}" Placeholder="{Static resx:AppResources.BuildingNo}" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                        </Frame>
+                        <StackLayout Orientation="Horizontal" >
+                            <ffimageloading:CachedImage Source="gps.png" Aspect="AspectFit" WidthRequest="50" HeightRequest="30" HorizontalOptions="EndAndExpand"></ffimageloading:CachedImage>
+
+                            <Label  TextColor="#999CA0" FontSize="12" Text="{Static resx:AppResources.getaddress}"></Label>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_27"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" BorderColor="Black"  CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_10"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_3"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <ffimageloading:CachedImage Margin="0,10,0,-5" HeightRequest="200" VerticalOptions="EndAndExpand" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" IsVisible="false" Margin="20,10,20,0" VerticalOptions="FillAndExpand" x:Name="stkDetails">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="30">
+                        <Grid ColumnDefinitions="15,2*" RowDefinitions="Auto,Auto" RowSpacing="30">
+                            <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" Grid.Column="0" Grid.Row="0"></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1" HeightRequest="50" BackgroundColor="White" Padding="5,0,5,0"  CornerRadius="10" Grid.Row="0">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="2" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Keyboard="Numeric" Text="{Binding AdvertisementModel.Area}" Placeholder="{Static resx:AppResources.Propertyarea}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" Grid.Column="0" Grid.Row="1"></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1" HeightRequest="50"  CornerRadius="10" Grid.Row="1" Padding="5,0,5,0">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="2" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Text="{Binding AdvertisementModel.FloorsNumber}" Keyboard="Numeric" Placeholder="{Static resx:AppResources.Floor}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueEdit.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.PropertyStatus}" FontAttributes="Bold" TextColor="Black" FontSize="14"></Label>
+                            </StackLayout>
+                            <!--<flv:FlowListView FlowItemsSource="{Binding PropertyStatus}" RowHeight="40" FlowColumnCount="3" SelectionMode="Single"   ItemSelected="CollectionView_SelectionChanged_1">
+                                <flv:FlowListView.FlowColumnTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="*">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panckData"  BackgroundColor="#EBEBEB" Grid.Column="0"  CornerRadius="5" Padding="5">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label Text="{Binding Name}" x:Name="_label" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+
+                                            </pankace:PancakeView>
+                                        </Grid>
+                                    </DataTemplate>
+                                      
+                                </flv:FlowListView.FlowColumnTemplate>
+                            </flv:FlowListView>-->
+                            <CollectionView HeightRequest="40"  x:Name="col_PropertyStatus"  BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                        HorizontalScrollBarVisibility="Never" 
+                                            SelectionChanged="CollectionView_SelectionChanged_1"
+                                            SelectedItem="{Binding SelectedPropertyStatus}"
+                                ItemsSource="{Binding PropertyStatus}">
+                                <!--<CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                                </CollectionView.ItemsLayout>-->
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"   Span="3"  VerticalItemSpacing="10"  />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="5,0,5,0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid ColumnDefinitions="*">
+
+                                                <pankace:PancakeView x:Name="panckData"  BackgroundColor="#EBEBEB" Grid.Column="0"  CornerRadius="5" Padding="5">
+                                                    <pankace:PancakeView.Border>
+                                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                    </pankace:PancakeView.Border>
+                                                    <Label Text="{Binding Name}" x:Name="_label" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+
+                                                </pankace:PancakeView>
+                                            </Grid>
+
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueFinishing.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Finishing}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="30"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                            SelectionChanged="CollectionView_SelectionChanged_2"
+                                        HorizontalScrollBarVisibility="Never" 
+                                            SelectedItem="{Binding SelectedPropertyFinished}"
+                                ItemsSource="{Binding PropertyFinished}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Horizontal" VerticalItemSpacing="15"  />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="5,0,5,0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="87" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <pankace:PancakeView Grid.Column="0"  HeightRequest="30" HorizontalOptions="FillAndExpand"  x:Name="panckData"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                                    <pankace:PancakeView.Border>
+                                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                    </pankace:PancakeView.Border>
+                                                    <Label x:Name="_label"  Text="{Binding Name}" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                                </pankace:PancakeView>
+                                            </Grid>
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueBedRoom.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Rooms}" TextColor="Black" FontAttributes="Bold" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40" SelectionMode="Single"  BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionChanged="CollectionView_SelectionChanged_3"
+                                        HorizontalScrollBarVisibility="Never"
+                                            SelectedItem="{Binding SelectedPropertyRooms}"
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5"   />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40" >
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <StackLayout>
+                                                    <Label Text="{Binding Name}" x:Name="_label" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+
+                                                </StackLayout>
+
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueReception.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Reception}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                        HorizontalScrollBarVisibility="Never"  SelectedItem="{Binding SelectedPropertyReception}" SelectionChanged="CollectionView_SelectionChanged_4"
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label x:Name="_label"  Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup Name="CommonStates">
+                                                        <VisualState Name="Normal" />
+                                                        <VisualState Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#E0E9F0" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueDining.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Dining}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                        HorizontalScrollBarVisibility="Never"  SelectedItem="{Binding SelectedPropertyDining}"  SelectionChanged="CollectionView_SelectionChanged_5"
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label x:Name="_label" Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueBalcony.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Balcony}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged_6"
+                                        HorizontalScrollBarVisibility="Never"
+                                             SelectedItem="{Binding SelectedPropertyBalcony}"
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label x:Name="_label"  Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueKitchen.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Kitchen}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged_7"
+                                        HorizontalScrollBarVisibility="Never"  SelectedItem="{Binding SelectedPropertyKitchen}" 
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label x:Name="_label"  Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueToliet.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Toliet}" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="40"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged_8"
+                                        HorizontalScrollBarVisibility="Never"  SelectedItem="{Binding SelectedPropertyToliet}" 
+                                ItemsSource="{Binding PropertyNumbers}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="5"/>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions=".75*"  Padding="15,0,0,0" HeightRequest="40">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panck" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <pankace:PancakeView x:Name="panck"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                                </pankace:PancakeView.Border>
+                                                <Label x:Name="_label"  Text="{Binding Name}" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+
+                        <Grid ColumnDefinitions="1.3*,.5*,1.3*,.5*" Padding="5">
+                            <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueFurnished.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Funished}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray"  CheckedChanged="FunishedCheck_CheckedChanged" >
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="Gray" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <VisualState x:Name="IsChecked">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="#034C82" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <!--<VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+                                        <VisualState Name="Checked">
+                                            <VisualState.Setters>
+                                                <Setter TargetName="FunishedCheck" Property="CheckBox.Color" Value="#E0E9F0" />
+                                                
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>-->
+                            </CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="2">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueEvelator.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Elevatar}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray" CheckedChanged="CheckBox_CheckedChanged">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="Gray" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <VisualState x:Name="IsChecked">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="#034C82" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueParking.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Parking}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray" Grid.Row="1">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="Gray" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <VisualState x:Name="IsChecked">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="#034C82" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </CheckBox>
+                            <!--<StackLayout Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                                <ffimageloading:CachedImage Source="Chat.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Bool" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray" Grid.Row="1"></CheckBox>-->
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueGarden.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Garden}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray"  Grid.Row="2" CheckedChanged="CheckBox_CheckedChanged_1">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="Gray" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                        <VisualState x:Name="IsChecked">
+                                            <VisualState.Setters>
+                                                <Setter Property="Color"
+                            Value="#034C82" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                            </CheckBox>
+                            <pankace:PancakeView Grid.Row="2" Padding="5,0,5,0" Grid.Column="2" HeightRequest="40" Grid.ColumnSpan="2" >
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.GardenArea}" Keyboard="Numeric" IsEnabled="False" x:Name="entryGardenArea"  Text="{Binding AdvertisementModel.GardenArea}"></custom:BorderlessEntry>
+
+                            </pankace:PancakeView>
+                        </Grid>
+                        <StackLayout Spacing="15">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueDocumentt.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Documents}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="100"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                        HorizontalScrollBarVisibility="Never" SelectedItem="{Binding SelectedPropertyDocument}"  SelectionChanged="CollectionView_SelectionChanged_9"
+                                ItemsSource="{Binding PropertyDocument}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="2"  VerticalItemSpacing="15"  />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentView Padding="5,0,5,0">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal" />
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                            <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Grid ColumnDefinitions="*">
+
+                                                <pankace:PancakeView x:Name="panckData"  Grid.Column="0" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                                    <pankace:PancakeView.Border>
+                                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                    </pankace:PancakeView.Border>
+                                                    <Label x:Name="_label" Text="{Binding Name}" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                                </pankace:PancakeView>
+
+                                            </Grid>
+                                        </ContentView>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+
+                        </StackLayout>
+
+                        <BoxView HeightRequest="1" Color="Gray" HorizontalOptions="FillAndExpand"></BoxView>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloadingsvg:SvgCachedImage Source="BlueFacality.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Facilities}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <CollectionView HeightRequest="120"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="None"
+                                        HorizontalScrollBarVisibility="Never"  
+                                ItemsSource="{Binding PropertyFacilites}">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical"  Span="2" VerticalItemSpacing="15" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid ColumnDefinitions="1.3*,.5*">
+                                            <StackLayout Orientation="Horizontal" Grid.Column="0" >
+                                                <ffimageloadingsvg:SvgCachedImage Source="{Binding Avatar}" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                                <Label Text="{Binding Name}" MaxLines="1" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                            </StackLayout>
+                                            <CheckBox Grid.Column="1" Color="Gray"  CheckedChanged="CheckBox_CheckedChanged_2">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="Color" Value="Gray" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                        <VisualState x:Name="IsChecked">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="Color" Value="#034C82" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                            </CheckBox>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="10">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_11"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_4"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkPhoto">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="*,*,*"  RowDefinitions="99"  ColumnSpacing="35" RowSpacing="15">
+                            <ffimageloading:CachedImage x:Name="firstPhoto" Grid.Column="0" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_16"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="SecondPhoto" Grid.Column="1" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_19"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="ThirdPhoto" Grid.Column="2" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_20"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*,*"  RowDefinitions="99" IsVisible="false" x:Name="gridPhoto" ColumnSpacing="35" RowSpacing="15">
+                            <ffimageloading:CachedImage x:Name="fourthPhoto" Grid.Column="0" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_22"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="fivePhoto" Grid.Column="1" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_23"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="SixPhoto" Grid.Column="2" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_24"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                        <Frame HorizontalOptions="FillAndExpand" x:Name="frmPhoto"  HasShadow="False" Padding="10" BorderColor="#e3e3e3" CornerRadius="5" BackgroundColor="White">
+                            <Label Text="{Static resx:AppResources.AddMorePhotos}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_21" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Label HorizontalOptions="FillAndExpand" FontSize="16"  TextColor="#999CA0" Text="{Static resx:AppResources.addclearimage}" ></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="20" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.PropertyDescription}" FontAttributes="Bold" FontSize="18" TextColor="Black"></Label>
+                        </StackLayout>
+                        <pankace:PancakeView HeightRequest="140">
+                            <pankace:PancakeView.Border>
+                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                            </pankace:PancakeView.Border>
+                            <custom:CustomEditor  TextChanged="CustomEditor_TextChanged" Placeholder="{Static resx:AppResources.PropertyDescription}" Text="{Binding AdvertisementModel.Description}" PlaceholderColor="#999CA0">
+
+                            </custom:CustomEditor>
+                        </pankace:PancakeView>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage Source="LayoutBlue.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Layout}" FontAttributes="Bold" FontSize="18" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="*,*,*"  RowDefinitions="99"  ColumnSpacing="35" RowSpacing="15">
+                            <ffimageloading:CachedImage x:Name="firstLayout" Grid.Column="0" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_30"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="SecondLayout" Grid.Column="1" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_31"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="ThirdLayout" Grid.Column="2" Source="AddPhoto.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_32"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*,*"  RowDefinitions="99" IsVisible="false" x:Name="gridLayout" ColumnSpacing="35" RowSpacing="15">
+                            <ffimageloading:CachedImage x:Name="fourthLayout" Grid.Column="0" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_33"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="fiveLayout" Grid.Column="1" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_34"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage x:Name="SixLayout" Grid.Column="2" Source="AddPhoto.png" Grid.Row="0">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_35"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </Grid>
+                        <Frame HorizontalOptions="FillAndExpand" x:Name="frmLayout"  HasShadow="False" Padding="10" BorderColor="#e3e3e3" CornerRadius="5" BackgroundColor="White">
+                            <Label Text="{Static resx:AppResources.AddMorePhotos}" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_29" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_12"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_5"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkPrice">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="5" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="15,*">
+                            <ffimageloadingsvg:SvgCachedImage Source="bluePrice.svg"></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1" CornerRadius="7">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Keyboard="Numeric" Placeholder="{Static resx:AppResources.Price}" Text="{Binding  AdvertisementModel.Price}"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <Label Text="{Static resx:AppResources.inEgp}" Grid.Column="1" Grid.Row="1"></Label>
+                        </Grid>
+                        <StackLayout>
+                            <Grid ColumnDefinitions="15,*">
+                                <ffimageloadingsvg:SvgCachedImage Grid.Column="0" Source="DeliveryDateBlue.svg"></ffimageloadingsvg:SvgCachedImage>
+                                <pankace:PancakeView Grid.Column="1"  CornerRadius="7">
+                                    <pankace:PancakeView.Border >
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <custom:CustomDatePicker FontSize="14" Placeholder="{Static resx:AppResources.DeliveryDate}"    Date="{Binding  AdvertisementModel.DeliveryDate}" x:Name="datePickerDelivery"
+                                                      MinimumDate="{Binding Source={Binding  DeliveryDate},
+                                                      Path=Date}"
+                                               Format="dd/MM/yyyy"/>
+                                </pankace:PancakeView>
+
+                            </Grid>
+                            <StackLayout Orientation="Horizontal"  Margin="0,20,0,20">
+                                <ffimageloadingsvg:SvgCachedImage Source="InstallmentBlue.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Installment}" FontAttributes="Bold" TextColor="Black" FontSize="20"></Label>
+                            </StackLayout>
+                            <Frame Padding="10" BorderColor="#e3e3e3" HasShadow="False">
+
+                                <StackLayout Spacing="20" Padding="10">
+                                  
+                                        <Grid ColumnDefinitions="2*,*">
+                                            <Frame Padding="5" Grid.Column="0" CornerRadius="5" BorderColor="#e3e3e3" HorizontalOptions="FillAndExpand" WidthRequest="70" HeightRequest="40" HasShadow="False">
+
+                                                <custom:BorderlessEntry Keyboard="Numeric" Placeholder="{Static resx:AppResources.DownPayment}" Text="{Binding AdvertisementModel.DownPayment}"></custom:BorderlessEntry>
+                                            </Frame>
+                                        <Frame Padding="5" Grid.Column="1" CornerRadius="5" BorderColor="#e3e3e3" HorizontalOptions="FillAndExpand" WidthRequest="70" HeightRequest="40" HasShadow="False">
+
+                                            <custom:BorderlessEntry Keyboard="Numeric" Margin="10,0,0,0" Placeholder="%" IsReadOnly="True" Text="{Binding AdvertisementModel.DownPayment}"></custom:BorderlessEntry>
+                                        </Frame>
+
+                                    </Grid>
+
+                                   
+                                        <Frame Padding="5" Grid.Column="0" CornerRadius="5" BorderColor="#e3e3e3" HorizontalOptions="FillAndExpand" WidthRequest="70" HeightRequest="40" HasShadow="False">
+                                            <custom:BorderlessEntry Keyboard="Numeric" Text="{Binding AdvertisementModel.MonthlyInstallment}" Placeholder="{Static resx:AppResources.Monthlyinstallment}"></custom:BorderlessEntry>
+                                        </Frame>
+                                    <Frame Padding="5" Grid.Column="0" CornerRadius="5" BorderColor="#e3e3e3" HorizontalOptions="FillAndExpand" WidthRequest="70" HeightRequest="40" HasShadow="False">
+                                        <custom:BorderlessEntry Keyboard="Numeric" Text="{Binding AdvertisementModel.YearlyInstallment}" Placeholder="{Static resx:AppResources.Yearlyinstallment}"></custom:BorderlessEntry>
+
+                                    </Frame>
+                                    <Frame Padding="5" Grid.Column="0" CornerRadius="5" BorderColor="#e3e3e3" HorizontalOptions="FillAndExpand" WidthRequest="70" HeightRequest="40" HasShadow="False">
+                                        <custom:BorderlessEntry   Text="{Binding AdvertisementModel.NumOfYears}" MaxLength="2" Keyboard="Numeric"  Placeholder="{Static resx:AppResources.NumberofYears}"></custom:BorderlessEntry>
+
+                                    </Frame>
+                                   
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BorderColor="Black" BackgroundColor="White" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Back}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_13"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="{Static resx:AppResources.Next}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_6"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <Image Source="imgBackground2.png" VerticalOptions="EndAndExpand"></Image>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="2" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkContactInformation">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="24" VerticalOptions="FillAndExpand">
+
+                        <Grid ColumnDefinitions="15,*">
+                            <ffimageloadingsvg:SvgCachedImage Source="bluePhone.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1" CornerRadius="7">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.MobileNumber}" Keyboard="Numeric" Text="{Binding AdvertisementModel.MobileNumber}"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <Grid ColumnDefinitions="2*,.5*">
+                            <Label BackgroundColor="Transparent" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.useSameNumber}" Grid.Column="0"></Label>
+                            <Switch Grid.Column="1" OnColor="#034C82" ThumbColor="White" IsToggled="True" Toggled="Switch_Toggled" ></Switch>
+                        </Grid>
+                        <Grid ColumnDefinitions="25,1.5*,*" ColumnSpacing="15">
+                            <ffimageloadingsvg:SvgCachedImage Grid.Column="0" Source="Mobilenumber.svg" ></ffimageloadingsvg:SvgCachedImage>
+                            <pankace:PancakeView Grid.Column="1" CornerRadius="7">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry x:Name="secondMobileNumber" Placeholder="{Static resx:AppResources.MobileNumber}" Keyboard="Numeric" Text="{Binding AdvertisementModel.SecondMobileNumber}"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <Frame Grid.Column="2" Padding="10" BorderColor="#e3e3e3" CornerRadius="7">
+                                <Label Text="{Static resx:AppResources.Verify}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="18"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_25" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <Grid ColumnDefinitions="2*,30">
+                            <Label BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.useAccountRegistered}" Grid.Column="0"></Label>
+                            <CheckBox Grid.Column="1" Color="Gray" CheckedChanged="CheckBox_CheckedChanged_3"></CheckBox>
+                        </Grid>
+                        <StackLayout Spacing="20" Margin="0,20,0,0">
+                            <Frame BackgroundColor="#C8A455" x:Name="framPuplish" IsVisible="false" HasShadow="False" CornerRadius="10">
+                                <Label Text="{Static resx:AppResources.Publish}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SavePropertyCommand}" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame BackgroundColor="#034C82" HasShadow="False" CornerRadius="10">
+                                <Label Text="{Static resx:AppResources.SavetomyAdds}" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SavePropertyInAdsCommand}" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+
+
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <ContentView    Grid.Row="2"   Opacity=".4" IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ActivityIndicator VerticalOptions="Center" WidthRequest="50" HorizontalOptions="Center" Color="#034C82" IsRunning="True"/>
+            </ContentView>
+        </Grid>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

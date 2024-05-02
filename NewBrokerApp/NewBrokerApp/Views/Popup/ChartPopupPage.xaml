@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:rg="http://rotorgames.com"
+                xmlns:resx="clr-namespace:NewBrokerApp.Resources"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+              xmlns:local="clr-namespace:NewBrokerApp.ViewModels"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+                xmlns:dxc="http://schemas.devexpress.com/xamarin/2014/forms/charts"
+               xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+                 xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="NewBrokerApp.Views.Popup.ChartPopupPage">
+   
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="20,0,20,0" VerticalOptions="End"  BackgroundColor="#fff" HeightRequest="500" WidthRequest="390"  CornerRadius="20,20,20,20" 
+                                              Padding="10,10,10,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout>
+
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="40" Margin="10">
+                            <Label Text="{Static resx:AppResources.AdTitle}"  VerticalOptions="Center" x:Name="txtTitle" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" HorizontalOptions="Start" TextColor="Black" FontSize="23" />
+
+                                    <ffimageloadingsvg:SvgCachedImage  
+                          Source="Vectors.svg" HorizontalOptions="EndAndExpand"  VerticalOptions="Center"
+                        WidthRequest="15" HeightRequest="15" >
+                                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    </ffimageloadingsvg:SvgCachedImage>
+                                </StackLayout>
+                             
+                           
+                       
+                    
+
+                        <ScrollView>
+                            <StackLayout>
+                                <dxc:ChartView x:Name="chart" HeightRequest="300">
+                                
+                                    <dxc:ChartView.AxisY>
+                                        <dxc:NumericAxisY>
+                                            <dxc:NumericAxisY.Title>
+                                                <dxc:AxisTitle Text="{Static resx:AppResources.Views}">
+                                                    <dxc:AxisTitle.Style>
+                                                        <dxc:TitleStyle>
+                                                            <dxc:TitleStyle.TextStyle>
+                                                                <dxc:TextStyle Size="16"/>
+                                                            </dxc:TitleStyle.TextStyle>
+                                                        </dxc:TitleStyle>
+                                                    </dxc:AxisTitle.Style>
+                                                </dxc:AxisTitle>
+                                            </dxc:NumericAxisY.Title>
+                                            
+                                        </dxc:NumericAxisY>
+                                    </dxc:ChartView.AxisY>
+                                    <dxc:ChartView.AxisX>
+                                        <dxc:NumericAxisX>
+                                            <dxc:NumericAxisX.Title>
+                                                <dxc:AxisTitle Text="{Static resx:AppResources.Days}">
+                                                    <dxc:AxisTitle.Style>
+                                                        <dxc:TitleStyle>
+                                                            <dxc:TitleStyle.TextStyle>
+                                                                <dxc:TextStyle Size="16"/>
+                                                            </dxc:TitleStyle.TextStyle>
+                                                        </dxc:TitleStyle>
+                                                    </dxc:AxisTitle.Style>
+                                                </dxc:AxisTitle>
+                                            </dxc:NumericAxisX.Title>
+                                           
+                                        </dxc:NumericAxisX>
+                                    </dxc:ChartView.AxisX>
+                                    <dxc:ChartView.Series>
+                                        <dxc:LineSeries>
+                                            <dxc:LineSeries.Data>
+                                                <dxc:SeriesDataAdapter DataSource="{Binding DataChartItems}"
+                                        ArgumentDataMember="Day">
+                                                    <dxc:ValueDataMember Type="Value" Member="Value" />
+                                                </dxc:SeriesDataAdapter>
+                                            </dxc:LineSeries.Data>
+                                        </dxc:LineSeries>
+                                    </dxc:ChartView.Series>
+                                </dxc:ChartView>
+                                <Frame BackgroundColor="#0C4B81" HasShadow="False"  VerticalOptions="End" CornerRadius="15">
+                                    <Label Text="{Static resx:AppResources.Done}" HorizontalOptions="CenterAndExpand" TextColor="White" VerticalOptions="CenterAndExpand" ></Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </StackLayout>
+                          
+                        </ScrollView>
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+    </PanCake:PancakeView>
+</rg:PopupPage>

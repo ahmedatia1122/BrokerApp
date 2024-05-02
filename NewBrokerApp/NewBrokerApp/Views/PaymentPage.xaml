@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{Static resx:AppResources.Payment}"
+             x:Class="NewBrokerApp.Views.PaymentPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView>
+                <StackLayout Margin="20" Spacing="15" >
+                    <Grid ColumnDefinitions="20,2*,.5*">
+                        <ffimageloading:CachedImage Grid.Column="0" Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                        <StackLayout Orientation="Horizontal" Grid.Column="1">
+                            <Label BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.FeaturedAd}" ></Label>
+                            <Label BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black" FontSize="15" Text="{Binding FeatureModel.Name}" Grid.Column="1"></Label>
+                            <Label BackgroundColor="Transparent" FontAttributes="Bold" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.Featuredclose}" ></Label>
+
+                        </StackLayout>
+                        <Switch Grid.Column="2" x:Name="FeatureSwitch" OnColor="#034C82" ThumbColor="White" Toggled="Switch_Toggled" IsToggled="false"></Switch>
+                    </Grid>
+                    <StackLayout x:Name="stk_duration" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <ffimageloading:CachedImage Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="{Static resx:AppResources.Duration}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+
+                        <CollectionView  HeightRequest="100"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="Single"
+                                        HorizontalScrollBarVisibility="Never"   SelectionChanged="CollectionView_SelectionChanged"
+                                ItemsSource="{Binding DurationItems}">
+
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"  Span="3"  VerticalItemSpacing="15"  />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentView Padding="5,0,5,0">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Normal" />
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Grid ColumnDefinitions="*" HeightRequest="100">
+
+                                            <pankace:PancakeView x:Name="panckData"  Grid.Column="0" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                                <pankace:PancakeView.Border>
+                                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                                </pankace:PancakeView.Border>
+                                                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Period}" TextColor="Black" FontSize="16" ></Label>
+                                                        <Label Text="{Static resx:AppResources.Month}" TextColor="Black" FontSize="16" ></Label>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding Amount, StringFormat='{0:0}' }" TextColor="#034C82"  FontSize="16" ></Label>
+                                                        <Label Text="{Static resx:AppResources.EGP}" TextColor="#034C82"  FontSize="16" ></Label>
+
+                                                    </StackLayout>
+
+                                                </StackLayout>
+                                            </pankace:PancakeView>
+
+                                        </Grid>
+                                    </ContentView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </StackLayout>
+                   
+                  
+                   
+                    <Grid ColumnDefinitions="10,2*" RowDefinitions="Auto,Auto,Auto" RowSpacing="15">
+                        <ffimageloading:CachedImage Grid.Column="0" Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                        <Label Text="{Static resx:AppResources.Increaseinviewership}" Grid.Column="1" TextColor="Black"></Label>
+                        <ffimageloading:CachedImage Grid.Row="1" Grid.Column="0" Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                        <Label Text="{Static resx:AppResources.AppearsGoldColor}" Grid.Row="1" Grid.Column="1" TextColor="Black"></Label>
+                        <ffimageloading:CachedImage Grid.Row="2" Grid.Column="0" Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                        <Label Text="{Static resx:AppResources.showsremotely}" Grid.Row="2" Grid.Column="1" TextColor="Black"></Label>
+                    </Grid>
+                    <StackLayout x:Name="stk_summery" IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <BoxView x:Name="box_document" HeightRequest="1" Color="#999CA0" />
+                        <StackLayout  Orientation="Horizontal"  x:Name="txApply"  IsEnabled="False" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <ffimageloading:CachedImage Source="document.png" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" HasShadow="False" HeightRequest="40" BackgroundColor="Transparent" Padding="5,1,5,1" BorderColor="#EBEBEB">
+                                <Grid ColumnDefinitions="2.5*,.5*" HorizontalOptions="FillAndExpand">
+                                    <custom:BorderlessEntry x:Name="txtDiscountCode" Placeholder="{Static resx:AppResources.DiscountCode}" PlaceholderColor="#999CA0" Grid.Column="0" HorizontalOptions="Fill"></custom:BorderlessEntry>
+                                    <Label Grid.Column="1" Text="{Static resx:AppResources.Apply}"  HorizontalOptions="End" TextColor="#034C82" FontSize="15" VerticalTextAlignment="Center" WidthRequest="50">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+
+                        </StackLayout>
+                        <BoxView x:Name="box_apply"  HeightRequest="1" Color="#999CA0"/>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <ffimageloading:CachedImage Source="price.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="{Static resx:AppResources.Summary}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <StackLayout Spacing="15">
+
+                            <Label x:Name="txtPrice" Text="0 EGP (0 month)" TextColor="Black"></Label>
+                            <Label Text="{Static resx:AppResources.Featurespayment}" x:Name="txtFeature"  TextColor="Black"></Label>
+                            <Label Text="{Static resx:AppResources.vatpayment}" x:Name="txtVat" TextColor="Black"></Label>
+                            <Label Text="{Static resx:AppResources.discountCodeempty}" x:Name="txtDiscount" TextColor="Black"></Label>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Static resx:AppResources.FullAmount}" FontSize="19"></Label>
+                            <Label Text=":" FontSize="19"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="0" TextColor="#034C82" x:Name="txtTotal" FontSize="19" FontAttributes="Bold"></Label>
+                                <Label Text="{Static resx:AppResources.EGP}" TextColor="#034C82" FontSize="19" FontAttributes="Bold"></Label>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                   
+                    <Frame BackgroundColor="#034C82" IsVisible="false" HasShadow="False" Padding="15" CornerRadius="5" x:Name="frmPaid">
+                        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Static resx:AppResources.Continuetopay}" TextColor="White" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Center"></Label>
+                            <Label Text="{Static resx:AppResources.EGPP}" x:Name="txtTotal2" TextColor="White" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Center"></Label>
+
+                        </StackLayout>
+                       
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Frame BackgroundColor="#034C82" Margin="0,100,0,0"   VerticalOptions="CenterAndExpand" x:Name="FrmPublish" HasShadow="False" Padding="15" CornerRadius="5" >
+                        <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Static resx:AppResources.Publish}" TextColor="White" FontAttributes="Bold" FontSize="17" HorizontalTextAlignment="Center"></Label>
+
+                        </StackLayout>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

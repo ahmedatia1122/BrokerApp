@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Shell.NavBarIsVisible="False"
+               xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+                xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="NewBrokerApp.Views.PropertyDetails">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0"  HeightRequest="70" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="Fill" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,10,20,10">
+                    <ffimageloadingsvg:SvgCachedImage Source="{Static resx:AppResources.svgTopArrow}" HorizontalOptions="Start" Aspect="AspectFit" BackgroundColor="Transparent" WidthRequest="25" HeightRequest="15">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <Label Text="{Static resx:AppResources.PropertyDetails}"  Margin="20,0,20,0" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" FontSize="20"  HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="10" Spacing="15">
+                    <ffimageloadingsvg:SvgCachedImage Source="newshare.svg" IsVisible="true" Aspect="AspectFit"  HorizontalOptions="EndAndExpand" WidthRequest="25" HeightRequest="10">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <ffimageloadingsvg:SvgCachedImage Source="{Binding ShowFav}"  Aspect="AspectFit" HorizontalOptions="EndAndExpand" WidthRequest="25" HeightRequest="10">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddAddFavouriteCommand}"/>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <ScrollView >
+                    <StackLayout Margin="20,20,20,20">
+                        <StackLayout Orientation="Vertical" IsVisible="{Binding AddDetailsItem.IsCompany}" Spacing="15" Margin="5,10,5,15">
+                            <Label Text="{Binding AddDetailsItem.CompanyName}" TextColor="Black" FontSize="20" FontAttributes="Bold"></Label>
+                            <Frame HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="5">
+                                <Image Source="{Binding AddDetailsItem.CompanyLogo}" HeightRequest="100" Aspect="AspectFill"></Image>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding AddDetailsItem.Title}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label Text="/" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label Text="{Binding AddDetailsItem.GovernorateName}" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                            <CarouselView ItemsSource="{Binding AddDetailsItem.Photos}" HeightRequest="200">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame  CornerRadius="10" Padding="0" BorderColor="WhiteSmoke" HasShadow="False">
+                                            <ffimageloading:CachedImage Source="{Binding .}" HeightRequest="200" Aspect="AspectFill" BackgroundColor="White"></ffimageloading:CachedImage>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage Source="bluePropertyDetails.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.PropertyDetails}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueProperty.svg"  WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Property}" Style="{StaticResource LightText}"  BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" VerticalTextAlignment="Center" Style="{StaticResource LightText}" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.PropertyFor}" Grid.Column="3" Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueLocation.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Location}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" VerticalTextAlignment="Center" Style="{StaticResource LightText}" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding Location}" Grid.Column="3"  Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="bluePrice.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Binding AddDetailsItem.AgreementStatus}" Style="{StaticResource LightText}" BackgroundColor="Transparent"  VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":"  VerticalTextAlignment="Center" Style="{StaticResource LightText}" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.Price}"  Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label Text="{Static resx:AppResources.EGP}" Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16"  FontAttributes="Bold"></Label>
+                            <Label Text="/"  IsVisible="{Binding ShowSellAndRent}" Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16"  FontAttributes="Bold"></Label>
+                            <Label Text="{Binding ShowRentValue}" IsVisible="{Binding ShowSellAndRent}"  Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" FontAttributes="Bold" ></Label>
+                            <Label Text="{Binding AddDetailsItem.RentValueName}"  Style="{StaticResource LightText}" IsVisible="{Binding ShowSellAndRent}" VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16" FontAttributes="Bold" ></Label>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueEdit.svg" WidthRequest="15" HeightRequest="15" Grid.Column="0"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Status}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.BuildingStatus}" Style="{StaticResource LightText}" IsVisible="{Binding ShowLand,Converter={StaticResource InverseBoolConverter}}" Grid.Column="3" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.LandingStatus}" Style="{StaticResource LightText}" IsVisible="{Binding ShowLand}" Grid.Column="3" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding ShowLand}">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueEdit.svg" WidthRequest="15" HeightRequest="15" Grid.Column="0"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.UsingFor}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" Style="{StaticResource LightText}" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.UsingForName}" Style="{StaticResource LightText}" Grid.Column="3" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueView.svg" WidthRequest="15" HeightRequest="15" Grid.Column="0"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Views}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" VerticalTextAlignment="Center" Style="{StaticResource LightText}" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.ViewsCount}" Grid.Column="3"  Style="{StaticResource LightText}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+
+                            <ffimageloadingsvg:SvgCachedImage Source="blueDocumentt.svg" Grid.Column="0" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Documents}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text=":" Grid.Column="2" VerticalTextAlignment="Center"  Style="{StaticResource LightText}" TextColor="Black" FontSize="16" ></Label>
+                            <Label Text="{Binding AddDetailsItem.Document}" Grid.Column="3" Style="{StaticResource LightText}" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                        </StackLayout>
+                        <BoxView Color="#F5F5F5" HeightRequest="2"  Margin="0,10,0,10"></BoxView>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.PropertyDescription}" TextColor="Black" FontSize="18" ></Label>
+                        </StackLayout>
+                        <Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Text="{Binding AddDetailsItem.Description}"></Label>
+                        <BoxView HeightRequest="2" Color="#F5F5F5"></BoxView>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10" IsVisible="{Binding ShowApparment}">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Areaa}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Area}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueBedRoom.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.BedRooms}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}"  Text="{Binding AddDetailsItem.Rooms}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Floor}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.FloorsNumber}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueReception.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Reciption}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Reception}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="2">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueToliet.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Toliet}" Style="{StaticResource LightText}" BackgroundColor="Transparent"  VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label  HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" Text="{Binding AddDetailsItem.Toilet}" FontAttributes="Bold" HorizontalTextAlignment="Center"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="2">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueDining.svg" Grid.Column="0" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.DiningRoom}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Dinning}" FontAttributes="Bold" HorizontalTextAlignment="End"  VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="3"  BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueBalcony.svg" WidthRequest="15"  HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Balcony}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Balcony}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="3" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueKitchen.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Kithen}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Kitchen}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="4"  BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFinishing.svg" Grid.Column="0" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Finshing}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Decoration}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="4" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueEvelator.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Elevtar}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Elevator}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="5"  BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFurnished.svg" Grid.Column="0" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Funished}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Furnished}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Grid.Row="5" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueGarden.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Garden}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Garden}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                    <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand" IsVisible="{Binding ShowGarden}"  Text="{Binding AddDetailsItem.GardenArea}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Grid.Row="6"  BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueParking.svg" Grid.Column="0" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Parking}" Style="{StaticResource LightText}"  BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="End"  Text="{Binding AddDetailsItem.Parking}"  FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" IsVisible="false" Orientation="Horizontal" Grid.Row="6" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Home" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="Ac" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"  Text="Yes" FontAttributes="Bold" HorizontalTextAlignment="End"  Grid.Column="2" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10" IsVisible="{Binding ShowShop}">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Style="{StaticResource LightText}" Text="{Static resx:AppResources.Area}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Area}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Streetwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.StreetWidth}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.StreetWidth}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFinishing.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Decoration}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Decoration}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                           
+                           
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10" IsVisible="{Binding ShowLand}">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.LandArea}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Area}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildingwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Width}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Width}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildinglength.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.length}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Length}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Streetwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.StreetWidth}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Width}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+
+
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*"  ColumnSpacing="10" IsVisible="{Binding ShowAdmin}">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Area}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Area}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Floor}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.OfficesFloors}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildinglength.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Type}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.OfficeType}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildinglength.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.OfficesNo}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" Text="{Binding AddDetailsItem.OfficesNum}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="2">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFinishing.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Decoration}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Decoration}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="2">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueEvelator.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Elevatar}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Elevator}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="3">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueParking.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Parking}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Parking}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Grid.Row="3" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueGarden.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Garden}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}"  Text="{Binding AddDetailsItem.Garden}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                    <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" IsVisible="{Binding ShowGarden}"  Text="{Binding AddDetailsItem.GardenArea}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="4">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Streetwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.StreetWidth}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.StreetWidth}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*"  ColumnSpacing="10" IsVisible="{Binding ShowBuilding}">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.LandArea}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" Text="{Binding AddDetailsItem.Area}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueArea.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.buildingArea}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" Text="{Binding AddDetailsItem.BuildingArea}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Floor}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.FloorsNumber}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Floor}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.FloorsNumber}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFloor.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Used}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.UsingForString}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="2">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueBedRoom.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Noofunits}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.NumUnits}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="2" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueEvelator.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Elevtar}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Elevator}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="3"  BackgroundColor="Transparent" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueFinishing.svg" Grid.Column="0" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Finshing}" Style="{StaticResource LightText}" BackgroundColor="Transparent" Grid.Column="1" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+
+                                <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}"  Text="{Binding AddDetailsItem.Decoration}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Grid.Row="3" BackgroundColor="Transparent">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueGarden.svg" HeightRequest="15" WidthRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Garden}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}"  Text="{Binding AddDetailsItem.Garden}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+                                    <Label BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Style="{StaticResource LightText}" IsVisible="{Binding ShowGarden}"  Text="{Binding AddDetailsItem.GardenArea}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="4">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueParking.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Parking}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Parking}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="4">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Streetwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.StreetWidth}" Style="{StaticResource LightText}"  BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.StreetWidth}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="5">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueParking.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Shop}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Shop}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="5">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="buildingdate.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.BuildingDate}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding BuildingDate}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" Grid.Row="6">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildingwidth.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Width}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Width}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal" Grid.Row="6">
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                    <ffimageloadingsvg:SvgCachedImage Source="Buildinglength.svg" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.length}" Style="{StaticResource LightText}" BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="14" ></Label>
+                                </StackLayout>
+                                <Label BackgroundColor="Transparent" Style="{StaticResource LightText}" HorizontalOptions="EndAndExpand"  Text="{Binding AddDetailsItem.Length}" FontAttributes="Bold" HorizontalTextAlignment="End"   VerticalTextAlignment="Center" TextColor="Black" FontSize="11" ></Label>
+
+                            </StackLayout>
+                        </Grid>
+
+                        <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding AddDetailsItem.ShowChalet}">
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="25" HeightRequest="25"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Daysavaliable}" FontSize="22" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <Label x:Name="txtMonth" Text="from 1st june to june 31 2022" TextColor="Gray"></Label>
+                            --><!--<syncfusion:SfCalendar  IsEnabled="False"  x:Name="calendar"  HeaderHeight="250"   SelectedDates="{Binding SelectedDates, Mode=TwoWay}" MaxDate="{Binding SelectedEndDate}" MinDate="{Binding SelectedStartDate}"
+        ShowYearView="False" ShowHeader="False"     InlineViewMode="Inline"  ShowInlineEvents="False" ViewMode="MonthView"   SelectionMode="MultiSelection"   EnableSwiping="False"     
+					  	 EnableDatesInPast="False">
+
+                                <syncfusion:SfCalendar.MonthViewSettings>
+                                    <syncfusion:MonthViewSettings 
+		CurrentMonthBackgroundColor="White"
+		CurrentMonthTextColor="#034C82"
+		PreviousMonthBackgroundColor="White"
+		PreviousMonthTextColor="#000000"
+		DateSelectionColor="#034C82"
+		SelectedDayTextColor="White"
+		DayHeaderFormat="EEEEE"
+		DayFontSize="12"
+		DayHeaderFontSize="14"
+		DayHeaderBackgroundColor="Transparent"
+		SelectionRadius="15"
+		TodaySelectionTextColor="White"
+		TodaySelectionBackgroundColor="#034C82"
+		DayHeaderTextColor="Black"
+		HeaderBackgroundColor="Transparent"
+		HeaderFontAttributes="Italic"
+		HeaderFontSize="16"
+		WeekEndTextColor="#034C82"
+		WeekEndBackgroundColor="White">
+
+                                    </syncfusion:MonthViewSettings>
+                                </syncfusion:SfCalendar.MonthViewSettings>
+                            </syncfusion:SfCalendar>
+                            <plugin:RangeSelectionCalendar IsVisible="false"
+        x:Name="rangedCalendar"
+                MonthLabelColor="LightGray"
+YearLabelColor="Blue"
+EventIndicatorColor="Red"
+EventIndicatorSelectedColor="White"
+DaysTitleColor="Gray" OtherMonthDayIsVisible="True"
+
+OtherMonthDayColor="Gray"
+SelectedDayTextColor="White"
+
+SelectedDateColor="Transparent"
+SelectedTodayTextColor="White"
+
+                HeightRequest="280"
+                DaysTitleMaximumLength="OneChar"
+                TodayTextColor="Transparent"
+                TodayFillColor="Transparent"
+                TodayOutlineColor="Transparent"
+               DeselectedDayTextColor="#034C82"
+                DayViewCornerRadius="10"
+                SelectedDayBackgroundColor="#034C82"
+                BackgroundColor="White"
+                ArrowsColor="Transparent"
+               IsEnabled="False"
+               DisableSwipeDetection="True"
+                EventIndicatorType="BackgroundFull"
+                SwipeToChangeMonthEnabled="False"
+        Padding="10,0"
+     
+        ShowMonthPicker="False"
+                ShowYearPicker="False"
+                CalendarSectionShown="True"
+                SelectedDateText=""
+                SwipeUpToHideEnabled="False" 
+        SelectedDates="{Binding SelectedDates}"
+        >
+
+
+                                <plugin:RangeSelectionCalendar.EmptyTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Label
+                        Margin="0,5,0,5"
+                        HorizontalTextAlignment="Center"
+                        Text="NO EVENTS FOR THE SELECTED DATE" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </plugin:RangeSelectionCalendar.EmptyTemplate>
+                            </plugin:RangeSelectionCalendar>--><!--
+                            <Grid ColumnDefinitions="*,*">
+                                <StackLayout Grid.Column="0">
+                                    <BoxView BackgroundColor="#034C82" WidthRequest="30" HeightRequest="30"></BoxView>
+                                    <Label Text="Days alread Booked" VerticalTextAlignment="Center"></Label>
+                                </StackLayout >
+                                <StackLayout Grid.Column="1">
+                                    <BoxView BackgroundColor="#e3e3e3" WidthRequest="30" HeightRequest="30"></BoxView>
+                                    <Label Text="Days avaliable  for reservation" VerticalTextAlignment="Center"></Label>
+                                </StackLayout>
+                            </Grid>
+                            <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="25" HeightRequest="25"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Daysavaliable}" FontSize="22" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            --><!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowMonth}">
+                                <Label x:Name="txtnextMonth" Text="from 1st june to june 31 2022" TextColor="Gray"></Label>
+                                <syncfusion:SfCalendar    HeaderHeight="250"  IsEnabled="false" SelectedDates="{Binding NextSelectedDates, Mode=TwoWay}" MaxDate="{Binding NextSelectedEndDate}" MinDate="{Binding NextSelectedStartDate}"
+        ShowYearView="False" ShowHeader="False"  x:Name="calendarNext"  InlineViewMode="Inline"  ShowInlineEvents="False" ViewMode="MonthView"   SelectionMode="MultiSelection"   EnableSwiping="False"     
+					  	 EnableDatesInPast="False">
+
+                                    <syncfusion:SfCalendar.MonthViewSettings>
+                                        <syncfusion:MonthViewSettings 
+		CurrentMonthBackgroundColor="White"
+		CurrentMonthTextColor="#034C82"
+		PreviousMonthBackgroundColor="White"
+		PreviousMonthTextColor="#000000"
+		DateSelectionColor="#034C82"
+		SelectedDayTextColor="White"
+		DayHeaderFormat="EEEEE"
+		DayFontSize="12"
+		DayHeaderFontSize="14"
+		DayHeaderBackgroundColor="Transparent"
+		SelectionRadius="15"
+		TodaySelectionTextColor="White"
+		TodaySelectionBackgroundColor="#034C82"
+		DayHeaderTextColor="Black"
+		HeaderBackgroundColor="Transparent"
+		HeaderFontAttributes="Italic"
+		HeaderFontSize="16"
+		WeekEndTextColor="#034C82"
+		WeekEndBackgroundColor="White">
+
+                                        </syncfusion:MonthViewSettings>
+                                    </syncfusion:SfCalendar.MonthViewSettings>
+                                </syncfusion:SfCalendar>
+                                <plugin:RangeSelectionCalendar
+        IsVisible="false"
+                MonthLabelColor="LightGray"
+YearLabelColor="Blue"
+EventIndicatorColor="Red"
+EventIndicatorSelectedColor="White"
+DaysTitleColor="Gray" OtherMonthDayIsVisible="True"
+IsEnabled="False"
+OtherMonthDayColor="Gray"
+SelectedDayTextColor="White"
+
+SelectedDateColor="Transparent"
+SelectedTodayTextColor="White"
+
+                HeightRequest="280"
+                DaysTitleMaximumLength="OneChar"
+                TodayTextColor="Transparent"
+                TodayFillColor="Transparent"
+                TodayOutlineColor="Transparent"
+               DeselectedDayTextColor="#034C82"
+                DayViewCornerRadius="10"
+                SelectedDayBackgroundColor="#034C82"
+                BackgroundColor="White"
+                ArrowsColor="Transparent"
+               
+               DisableSwipeDetection="True"
+                EventIndicatorType="BackgroundFull"
+                SwipeToChangeMonthEnabled="False"
+        Padding="10,0"
+     
+        ShowMonthPicker="False"
+                ShowYearPicker="False"
+                CalendarSectionShown="True"
+                SelectedDateText=""
+                SwipeUpToHideEnabled="False" 
+        SelectedDates="{Binding SelectedDates}"
+       >
+
+
+                                    <plugin:RangeSelectionCalendar.EmptyTemplate>
+                                        <DataTemplate>
+                                            <StackLayout>
+                                                <Label
+                        Margin="0,5,0,5"
+                        HorizontalTextAlignment="Center"
+                        Text="NO EVENTS FOR THE SELECTED DATE" />
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </plugin:RangeSelectionCalendar.EmptyTemplate>
+                                </plugin:RangeSelectionCalendar>
+                                <Grid ColumnDefinitions="*,*">
+                                    <StackLayout Grid.Column="0">
+                                        <BoxView BackgroundColor="#034C82" WidthRequest="30" HeightRequest="30"></BoxView>
+                                        <Label Text="{Static resx:AppResources.DaysalreadBooked}" VerticalTextAlignment="Center"></Label>
+                                    </StackLayout >
+                                    <StackLayout Grid.Column="1">
+                                        <BoxView BackgroundColor="#e3e3e3" WidthRequest="30" HeightRequest="30"></BoxView>
+                                        <Label Text="{Static resx:AppResources.Daysavaliableforreservation}" VerticalTextAlignment="Center"></Label>
+                                    </StackLayout>
+                                </Grid>
+                                <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+
+                            </StackLayout>--><!--
+                           
+                        </StackLayout>-->
+                        <BoxView HeightRequest="2" Color="#F5F5F5" IsVisible="{Binding AddDetailsItem.IsCompany}"></BoxView>
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="FillAndExpand" IsVisible="{Binding AddDetailsItem.IsCompany}">
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="LayoutBlue.svg" WidthRequest="20" HeightRequest="20"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Layout}" FontSize="22" TextColor="Black" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <Label Text="First Floor" IsVisible="false" TextColor="Black" FontSize="11"></Label>
+                            <CarouselView ItemsSource="{Binding AddDetailsItem.Layouts}" HeightRequest="200">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame  CornerRadius="10" Padding="0" BorderColor="WhiteSmoke" HasShadow="False">
+                                            <ffimageloading:CachedImage Source="{Binding .}" HeightRequest="200" Aspect="AspectFill" BackgroundColor="White"></ffimageloading:CachedImage>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                        </StackLayout>
+                        <BoxView HeightRequest="2" Color="#F5F5F5" Margin="0,10,0,0" IsVisible="{Binding AddDetailsItem.IsCompany}"></BoxView>
+                        <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                            <ffimageloadingsvg:SvgCachedImage Source="BlueFacality.svg"></ffimageloadingsvg:SvgCachedImage>
+                            <Label Text="{Static resx:AppResources.Facilities}" TextColor="Black" FontSize="18" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <CollectionView HeightRequest="120"   BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="None"
+                                        HorizontalScrollBarVisibility="Never"  
+                                ItemsSource="{Binding FacilitiesItems}">
+
+                            <CollectionView.ItemsLayout> 
+                                <GridItemsLayout Orientation="Vertical"  Span="2"  VerticalItemSpacing="15" HorizontalItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="1.3*,.5*">
+                                        <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                            <ffimageloadingsvg:SvgCachedImage Aspect="AspectFit" Source="{Binding AvatarSvg}" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                            <Label Text="{Binding Name}" Style="{StaticResource LightText}" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                        </StackLayout>
+                                        <Label Text="{Binding IsChecked}" Grid.Column="1" TextColor="Black" HorizontalTextAlignment="End" VerticalTextAlignment="Center"></Label>
+
+
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <BoxView HeightRequest="2" Color="#F5F5F5" IsVisible="{Binding ShowInstallment}"></BoxView>
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,5,0,10" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowInstallment}">
+                            <StackLayout Orientation="Horizontal" >
+                                <ffimageloadingsvg:SvgCachedImage Source="bluePrice.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.PriceCash}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black"></Label>
+                                <Label Text=":" FontSize="18" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                <Label Text="{Binding AddDetailsItem.Price}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                                <Label Text="{Static resx:AppResources.EGP}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="InstallmentBlue.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.Installment}" FontSize="20" TextColor="Black" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <Frame CornerRadius="7" Margin="5" HasShadow="False" BorderColor="#e3e3e3">
+                                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Static resx:AppResources.DownPayment}" Style="{StaticResource LightText}" FontSize="11" TextColor="Black"></Label>
+                                        <Label Text=":" FontSize="11" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                        <Label Text="{Binding AddDetailsItem.DownPayment}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                        <Label Text="{Static resx:AppResources.EGP}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Static resx:AppResources.Monthlyinstallment}" FontSize="11" TextColor="Black"></Label>
+                                        <Label Text=":" FontSize="11" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                        <Label Text="{Binding AddDetailsItem.MonthlyInstallment}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                        <Label Text="{Static resx:AppResources.EGP}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Static resx:AppResources.Yearlyinstallment}" Style="{StaticResource LightText}" FontSize="11" TextColor="Black"></Label>
+                                        <Label Text=":" FontSize="11" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                        <Label Text="{Binding AddDetailsItem.YearlyInstallment}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                        <Label Text="{Static resx:AppResources.EGP}" FontSize="16" Style="{StaticResource LightText}" TextColor="Black" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Static resx:AppResources.NumberofYears}" Style="{StaticResource LightText}" FontSize="11" TextColor="Black"></Label>
+                                        <Label Text=":" FontSize="11" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                        <Label Text="{Binding AddDetailsItem.NumOfYears}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                        <Label Text="{Static resx:AppResources.Years}" Style="{StaticResource LightText}" FontSize="16" TextColor="Black" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="DeliveryDateBlue.svg" WidthRequest="10" HeightRequest="10"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.DeliveryDate}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black"></Label>
+                                <Label Text=":" FontSize="18" TextColor="Black" Style="{StaticResource LightText}"></Label>
+                                <Label Text="{Binding AddDetailsItem.DeliveryDate,StringFormat='{0:dd-MM-yyyy}'}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Spacing="20">
+                            <BoxView HeightRequest="2" Color="#F5F5F5"></BoxView>
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueNumber.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.AddNumbers}" Style="{StaticResource LightText}" TextColor="Black" VerticalTextAlignment="Center" FontSize="18"></Label>
+                                <Label Text=":" Style="{StaticResource LightText}"></Label>
+                                <Label Text="{Binding AddDetailsItem.Id}" Style="{StaticResource LightText}" TextColor="Black" FontSize="18" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <BoxView HeightRequest="2" Color="#F5F5F5" ></BoxView>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="FillAndExpand" IsVisible="{Binding AddDetailsItem.IsCompany}">
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueAbout.svg" WidthRequest="20" HeightRequest="20"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.aboutthecompany}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <Label Text="{Binding AddDetailsItem.CompanyAbout}" Style="{StaticResource LightText}" FontSize="18" TextColor="Black"></Label>
+                        </StackLayout>
+
+                        <StackLayout Spacing="20">
+                            <StackLayout IsVisible="{Binding AddDetailsItem.IsCompany,Converter={StaticResource InverseBoolConverter}}">
+                                <StackLayout Orientation="Horizontal">
+                                    <ffimageloadingsvg:SvgCachedImage Source="blueadvertiser.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.Advertiser}"  FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="Black" FontSize="16"></Label>
+
+                                </StackLayout>
+                                <Label Text="{Binding AddDetailsItem.AdvertiseMakerName}" Style="{StaticResource LightText}" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="Black" FontSize="11"></Label>
+                                <Label Text="{Binding AddDetailsItem.AdvertiseMaker}" Style="{StaticResource LightText}" VerticalTextAlignment="Center"  FontSize="18"></Label>
+                            </StackLayout>
+                            <BoxView HeightRequest="2" Color="#F5F5F5" IsVisible="{Binding AddDetailsItem.IsCompany,Converter={StaticResource InverseBoolConverter}}"></BoxView>
+                            <StackLayout Orientation="Horizontal">
+                                <ffimageloadingsvg:SvgCachedImage Source="blueCall.svg"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.ContactwiththeAdvertiser}" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="Black" FontSize="11"></Label>
+
+                            </StackLayout>
+                            <Grid ColumnDefinitions="*,*" >
+                                <!--<Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="Chat" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"></Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>-->
+                                
+                                <Frame HasShadow="False" Grid.Column="0" Padding="10" Grid.Row="0" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="{Static resx:AppResources.Call}" Style="{StaticResource LightText}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"></Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenCallForAddCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame HasShadow="False" IsEnabled="{Binding AddDetailsItem.WhatsApped}" Grid.Column="1" Padding="10" Grid.Row="0" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="{Static resx:AppResources.WhatsApp}" Style="{StaticResource LightText}" IsEnabled="{Binding AddDetailsItem.WhatsApped}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame HasShadow="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="10" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="{Static resx:AppResources.Location}" Style="{StaticResource LightText}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame HasShadow="False" IsVisible="{Binding AddDetailsItem.IsCompany}" Grid.Column="0" Padding="10" Grid.Row="2" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="{Static resx:AppResources.AllCoProperty}" Style="{StaticResource LightText}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding LoadCompanyAdsCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame HasShadow="False" Grid.Column="1" IsVisible="{Binding AddDetailsItem.IsCompany}" Padding="10" Grid.Row="2" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="{Static resx:AppResources.CoLocation}" Style="{StaticResource LightText}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenCompanyLocationCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Grid>
+                            <StackLayout Margin="0,5,0,15" IsVisible="{Binding AddDetailsItem.IsCompany}" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="facebook.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenFaceBookCompanyCommand}"/>
+                                    </Frame.GestureRecognizers>    
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="twitter.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenSnapchatCompanyCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0" WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="instgram.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenInstgramCompanyCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="tok.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpentokCompanyCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

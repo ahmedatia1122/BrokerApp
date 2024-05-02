@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="NewBrokerApp.Views.PropertyAddressPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+            <StackLayout Margin="20">
+                <Frame Padding="6" HasShadow="False" BorderColor="#E3E3E3">
+                    <StackLayout Orientation="Horizontal" Margin="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Property Address" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                        <Image Source="arrow.png" HorizontalOptions="EndAndExpand"></Image>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    
+                </Frame>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                    <Frame Grid.Column="0" HasShadow="False" Padding="5" BackgroundColor="WhiteSmoke" CornerRadius="5" BorderColor="#e3e3e3">
+                        <custom:BorderlessEntry Placeholder="Compound" PlaceholderColor="Gray" FontSize="16"></custom:BorderlessEntry>
+
+                    </Frame>
+                    <Frame Grid.Column="1" HasShadow="False"  Padding="5"  BackgroundColor="WhiteSmoke" BorderColor="#E3E3E3" CornerRadius="5">
+                        <custom:BorderlessEntry Placeholder="Street" PlaceholderColor="Gray" FontSize="16"></custom:BorderlessEntry>
+
+                    </Frame>
+                </Grid>
+                <Frame Grid.Column="0" HasShadow="False" Padding="5" BackgroundColor="WhiteSmoke" CornerRadius="5"  BorderColor="#E3E3E3">
+                    <custom:BorderlessEntry Placeholder="Building" PlaceholderColor="Gray" FontSize="16"></custom:BorderlessEntry>
+
+                </Frame>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                    <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="#e1e9f0" CornerRadius="5">
+                        <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#0C4B81" FontSize="16" ></Label>
+
+                    </Frame>
+                    <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                        <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </StackLayout>
+            <Image VerticalOptions="EndAndExpand" Source="imgBackground2.png" ></Image>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

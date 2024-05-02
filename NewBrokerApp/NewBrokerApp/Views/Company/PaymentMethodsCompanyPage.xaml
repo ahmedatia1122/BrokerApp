@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White"
+              xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Shell.NavBarIsVisible="False"
+             x:Class="NewBrokerApp.Views.Company.PaymentMethodCompanyPage">
+    <ContentPage.Content>
+        <Frame  Padding="0">
+            <Grid>
+                <ScrollView Margin="0,0,0,20">
+                    <WebView HorizontalOptions="FillAndExpand" HeightRequest="1150" Navigated="wv_Navigated" x:Name="wv"/>
+                </ScrollView>
+            </Grid>
+        </Frame>
+        <!--<Grid RowDefinitions="Auto,*" >
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="20,0,20,0">
+                <StackLayout VerticalOptions="CenterAndExpand" >
+                   <Image Source="{Static resx:AppResources.TopArrow}" HorizontalOptions="Start" HeightRequest="25" ></Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackUpCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Text="Payment" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" Spacing="15" VerticalOptions="FillAndExpand" Grid.Row="1" Margin="10">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <ffimageloading:CachedImage Source="price" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                    <Label Text="Choose Payment Metods" TextColor="Black" FontSize="19" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="15" RowSpacing="15">
+                    <Frame BackgroundColor="#F5F5F5" Grid.Column="0" Grid.Row="0" CornerRadius="5">
+                        <ffimageloading:CachedImage Source="fawry"></ffimageloading:CachedImage>
+                    </Frame>
+                    <Frame BackgroundColor="#F5F5F5" Grid.Column="1" Grid.Row="0" CornerRadius="5">
+                        <ffimageloading:CachedImage Source="visa"></ffimageloading:CachedImage>
+                    </Frame>
+                    <Frame BackgroundColor="#F5F5F5" Grid.Column="0" Grid.Row="1" CornerRadius="5">
+                        <ffimageloading:CachedImage Source="BankTransfer"></ffimageloading:CachedImage>
+                    </Frame>
+                    <Frame BackgroundColor="#F5F5F5" Grid.Column="1" Grid.Row="1" CornerRadius="5">
+                        <ffimageloading:CachedImage Source="vodafone"></ffimageloading:CachedImage>
+                    </Frame>
+                </Grid>
+                <Label Text="the invoice will send to your account Email"></Label>
+                <BoxView Color="#F5F5F5" HeightRequest="2" HorizontalOptions="FillAndExpand"></BoxView>
+                <ffimageloading:CachedImage Source="visa" HorizontalOptions="StartAndExpand"></ffimageloading:CachedImage>
+
+                <Frame BorderColor="#F5F5F5" CornerRadius="5" Padding="5" HasShadow="False">
+                    <custom:BorderlessEntry PlaceholderColor="#999CA0" Placeholder="Card Number"/>
+                </Frame>
+                <Frame BorderColor="#F5F5F5" CornerRadius="5" Padding="5" HasShadow="False">
+                    <custom:BorderlessEntry PlaceholderColor="#999CA0" Placeholder="Cardholder's Name"/>
+                </Frame>
+                <Grid ColumnDefinitions="2*,*">
+                    <Frame Grid.Column="0" BorderColor="#F5F5F5" CornerRadius="5" Padding="5" HasShadow="False">
+                        <custom:BorderlessEntry PlaceholderColor="#999CA0" Placeholder="Card expiry Date"/>
+                    </Frame>
+                    <Frame Grid.Column="1" BorderColor="#F5F5F5" CornerRadius="5" Padding="5" HasShadow="False">
+                        <custom:BorderlessEntry PlaceholderColor="#999CA0" Placeholder="CVV"/>
+                    </Frame>
+                </Grid>
+                <Frame BackgroundColor="#0C4B81" Padding="10" Margin="20" VerticalOptions="EndAndExpand" HasShadow="False">
+                    <Label Text="Pay 233 EGP" x:Name="txtTotal" FontSize="19" TextColor="White" HorizontalTextAlignment="Center" ></Label>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+            </StackLayout>
+        </Grid>-->
+
+    </ContentPage.Content>
+</ContentPage>

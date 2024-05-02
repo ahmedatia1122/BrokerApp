@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+              xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Shell.NavBarIsVisible="False"
+               xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="NewBrokerApp.Views.Company.CompanyDataPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="5,0,10,0">
+
+                <StackLayout VerticalOptions="CenterAndExpand" HeightRequest="40"  BackgroundColor="Transparent">
+                    <ffimageloading:CachedImage   Source="{Static resx:AppResources.TopArrow}" VerticalOptions="CenterAndExpand" Aspect="AspectFit" HeightRequest="15" WidthRequest="50" HorizontalOptions="Start"  ></ffimageloading:CachedImage>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Text="{Static resx:AppResources.CompanyData}" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <ScrollView>
+                    <StackLayout Margin="20,20,20,50" Spacing="20">
+                        <Label Text="{Static resx:AppResources.Welcome}" FontAttributes="Bold" TextColor="Black"  FontSize="20"></Label>
+                        <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Image Source="Profile.png" WidthRequest="15" HeightRequest="15" ></Image>
+                            <Frame HasShadow="False" HeightRequest="40" BorderColor="#ebebeb" CornerRadius="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
+                                <custom:BorderlessEntry HeightRequest="40" BackgroundColor="Transparent"  Keyboard="Text" Text="{Binding CompanyDetailsItem.Name}"  Placeholder="{Static resx:AppResources.CompanyName}" FontSize="18"></custom:BorderlessEntry>
+
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Image Source="email.png" WidthRequest="15" HeightRequest="15" ></Image>
+                            <Frame HasShadow="False" HeightRequest="40" BorderColor="#ebebeb"  CornerRadius="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
+                                <custom:BorderlessEntry  HeightRequest="40"  Keyboard="Text" Text="{Binding CompanyDetailsItem.EmailAddress}"  Placeholder="{Static resx:AppResources.EmailId}" FontSize="18"></custom:BorderlessEntry>
+
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Image Source="vector.png" WidthRequest="15" HeightRequest="15" ></Image>
+                            <Frame HasShadow="False" HeightRequest="40" BorderColor="#ebebeb" CornerRadius="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand" >
+                                <custom:BorderlessEntry   HeightRequest="40" Keyboard="Numeric"  Text="{Binding CompanyDetailsItem.PhoneNumber}" Placeholder="{Static resx:AppResources.MobileNumber}" FontSize="18"></custom:BorderlessEntry>
+
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Label Text="{Static resx:AppResources.Welcome}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="18"></Label>
+                            <Switch OnColor="#034C82" IsToggled="{Binding CompanyDetailsItem.IsWhatsApp}"   ThumbColor="White"  HorizontalOptions="EndAndExpand">
+
+                            </Switch>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Grid ColumnDefinitions="1.7*,.15*,.5*" HorizontalOptions="FillAndExpand" >
+                                <StackLayout Orientation="Horizontal" Spacing="15" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Image Source="Vector.png" WidthRequest="15" HeightRequest="15" ></Image>
+                                    <Frame  HasShadow="False" HeightRequest="40" BorderColor="#ebebeb" CornerRadius="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
+                                        <custom:BorderlessEntry HeightRequest="40"  Keyboard="Numeric" Text="{Binding CompanyDetailsItem.SecondMobile}" Placeholder="{Static resx:AppResources.AddMobilenumber}" FontSize="18"></custom:BorderlessEntry>
+
+                                    </Frame>
+                                </StackLayout>
+                                <Button Text="{Static resx:AppResources.Verify}" Command="{Binding OpenCompanyVerifyMobileNumberPageCommand}" BackgroundColor="#C8A455" CornerRadius="5" Grid.Column="2"></Button>
+                            </Grid>
+
+                        </StackLayout>
+
+                        <!--<ffimageloading:CachedImage x:Name="imglogo" Source="{Binding CompanyDetailsItem.Avatar}">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>-->
+                        <Frame Padding="0" HasShadow="False"  CornerRadius="5" BorderColor="#e5e5e5" BackgroundColor="#e5e5e5">
+                            <Image  x:Name="imglogo" HeightRequest="120" Aspect="AspectFill" Source="{Binding LogoItem}"></Image>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <StackLayout>
+                            <Label Text="{Static resx:AppResources.Uploadcompanylogo}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="19"></Label>
+                            <Label Text="{Static resx:AppResources.pixcel}" TextColor="#999CA0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="17"></Label>
+
+                        </StackLayout>
+                        <!--<ffimageloading:CachedImage x:Name="imgBwLogo" Source="{Binding CompanyDetailsItem.BwLogo}">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>-->
+                        <Frame Padding="0" HasShadow="False"  CornerRadius="5" BorderColor="#e5e5e5" BackgroundColor="#e5e5e5">
+                            <Image  x:Name="imgBwLogo" HeightRequest="120" Aspect="AspectFill" Source="{Binding BwLogoItem}"></Image>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <StackLayout>
+                            <Label Text="{Static resx:AppResources.UploadBWcompanylogo}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="19"></Label>
+                            <Label Text="{Static resx:AppResources.pixcel}" TextColor="#999CA0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="17"></Label>
+
+                        </StackLayout>
+                        <!--<ffimageloading:CachedImage x:Name="imgCommericalAvatar" Source="{Binding CompanyDetailsItem.CommericalAvatar}">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>-->
+                        <Frame Padding="0"  HeightRequest="120" HasShadow="False" CornerRadius="5" BorderColor="#e5e5e5" BackgroundColor="#e5e5e5">
+                            <Image  x:Name="imgCommericalAvatar" Aspect="AspectFill" Source="{Binding CommericalAvatarItem}"></Image>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <StackLayout>
+                            <Label Text="{Static resx:AppResources.uploadacopy}" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="19"></Label>
+                            <Label Text="{Static resx:AppResources.filesinJPG}" TextColor="#999CA0" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="17"></Label>
+
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="text" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:CustomEditor HeightRequest="120"  Placeholder="{Static resx:AppResources.aboutthecompany}" Text="{Binding CompanyDetailsItem.About}"></custom:CustomEditor>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="location" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry IsEnabled="False" x:Name="txtLocation" Text="{Binding Location}" Placeholder="{Static resx:AppResources.CompanyLocation}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="grayFacebook" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Facebookpagelink}" Text="{Binding CompanyDetailsItem.Facebook}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="grayinstgram" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Instgrampagelink}" Text="{Binding CompanyDetailsItem.Instagram}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="grayTwitter" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.SnapShotpagelink}" Text="{Binding CompanyDetailsItem.Snapchat}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="grayTok" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.TikTokpagelink}" Text="{Binding CompanyDetailsItem.Tiktok}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="grayWeb" WidthRequest="20" HeightRequest="20"></ffimageloading:CachedImage>
+                            <Frame HorizontalOptions="FillAndExpand" CornerRadius="7" Padding="5,0,5,0" HasShadow="False" BorderColor="#e5e5e5" BackgroundColor="White">
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Websitepagelink}" Text="{Binding CompanyDetailsItem.Website}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </Frame>
+                        </StackLayout>
+                        <Frame BackgroundColor="#0C4B81" Padding="10" CornerRadius="5" HasShadow="False" HeightRequest="40" Margin="10,10,10,30">
+                            <Label Text="{Static resx:AppResources.Save}" TextColor="White" VerticalTextAlignment="Center" FontSize="18" HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpdateCompanyAccountCommand}" NumberOfTapsRequired="1"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </StackLayout>
+
+                </ScrollView>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:rg="http://rotorgames.com"
+             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+                 xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="NewBrokerApp.Views.Popup.PropertyPage" HasSystemPadding="False">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="20,150,20,0" VerticalOptions="StartAndExpand"  BackgroundColor="#fff" HeightRequest="300" WidthRequest="390"  CornerRadius="20,20,20,20" 
+                                              Padding="10,10,10,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Spacing="15" VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label Text="1" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <ffimageloadingsvg:SvgCachedImage Source="Rightsign.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                <Label Text="{Static resx:AppResources.BasicDetails}" TextColor="Black" FontSize="18"></Label>
+                                <Label Text="{Static resx:AppResources.Edit}" TextColor="#034C82" HorizontalOptions="EndAndExpand"  FontSize="18"></Label>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="2" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.PropertyAddress}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="3" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.PropertyDetails}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="4" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.Photosoftheproperty}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="5" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.PropertyPricing}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="6" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.AdvertiserData}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="7" IsVisible="false"  TextColor="Black" FontSize="18"></Label>
+                            <Label Text="{Static resx:AppResources.Contactinformtation}" TextColor="Black" FontSize="18"></Label>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                       
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+    </PanCake:PancakeView>
+</rg:PopupPage>

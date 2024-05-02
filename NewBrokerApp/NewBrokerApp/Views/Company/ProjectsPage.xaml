@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+               xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+              xmlns:vm="clr-namespace:NewBrokerApp.ViewModels" 
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="NewBrokerApp.Views.Company.ProjectsPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="20,0,20,0">
+
+                <StackLayout VerticalOptions="CenterAndExpand" >
+                   <Image Source="{Static resx:AppResources.TopArrow}" HorizontalOptions="Start" HeightRequest="25" ></Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Text="{Static resx:AppResources.CompanyDetails}" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="15,20,15,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <ScrollView>
+                    <StackLayout Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout  BackgroundColor="Transparent">
+                                        <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="15" Margin="5,10,5,15">
+                                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="0" BorderColor="WhiteSmoke" CornerRadius="5">
+                                            <ffimageloading:CachedImage Source="arrow.png" HeightRequest="100" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                            </Frame>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="FillAndExpand">
+                                            <StackLayout Orientation="Horizontal">
+                                                <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="15" HeightRequest="15"></ffimageloadingsvg:SvgCachedImage>
+                                    <Label Text="{Static resx:AppResources.aboutthecompany}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                                            </StackLayout>
+                                <Label Margin="5,0,5,0" Text="{Static resx:AppResources.companyAbout}" FontSize="18" TextColor="Black"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                        <BoxView HeightRequest="2" Color="#F5F5F5"></BoxView>
+                        <CollectionView  BackgroundColor="White"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="None"
+                                        HorizontalScrollBarVisibility="Never"
+                                ItemsSource="{Binding ProjectsItems}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="15" HorizontalItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Spacing="10" BackgroundColor="Transparent">
+                                        <StackLayout  Orientation="Vertical" Margin="5">
+                                            <Label Text="{Binding Name}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                                        </StackLayout>
+                                        <StackLayout Padding="5">
+                                            <CarouselView  ItemsSource="{Binding PhotosList}" HeightRequest="250">
+                                                <CarouselView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Frame  CornerRadius="10" Padding="0" BorderColor="Black" HasShadow="False">
+                                                            <ffimageloading:CachedImage Source="{Binding .}" HeightRequest="250" Aspect="AspectFill" BackgroundColor="White"></ffimageloading:CachedImage>
+                                                        </Frame>
+                                                    </DataTemplate>
+                                                </CarouselView.ItemTemplate>
+                                            </CarouselView>
+                                        </StackLayout>
+                                        <StackLayout  HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="FillAndExpand">
+                                            <StackLayout Orientation="Horizontal">
+                                                <ffimageloadingsvg:SvgCachedImage Source="blueDocument.svg" WidthRequest="20" HeightRequest="20"></ffimageloadingsvg:SvgCachedImage>
+                                                <Label Text="{Static resx:AppResources.Description}" FontSize="18" TextColor="Black" FontAttributes="Bold"></Label>
+                                            </StackLayout>
+                                            <Label Margin="5,0,5,0" Text="{Binding Description}" FontSize="18" TextColor="Black"></Label>
+                                        </StackLayout>
+                                        <Frame BackgroundColor="#034C82" CornerRadius="10" Padding="15" >
+                                            <Label Text="{Static resx:AppResources.ProjectLocationmap}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="18" TextColor="White"></Label>
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Grid ColumnDefinitions="*,*" RowSpacing="15" ColumnSpacing="15" Margin="5">
+                                <!--<Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="5" BackgroundColor="#034C82">
+                                    <Label Text="Chat" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"></Label>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>-->
+                                
+                                <Frame HasShadow="False" Grid.Column="0" Padding="10" Grid.Row="0" CornerRadius="10" BackgroundColor="#034C82">
+                                <Label Text="{Static resx:AppResources.Chat}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"></Label>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpenCallForAddCommand}"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame HasShadow="False" Grid.Column="1" Padding="10" Grid.Row="0" CornerRadius="10" BackgroundColor="#034C82">
+                                <Label Text="{Static resx:AppResources.Website}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            <Frame HasShadow="False" Grid.Column="0" Padding="10" Grid.Row="1" CornerRadius="10" BackgroundColor="#034C82">
+                                <Label Text="{Static resx:AppResources.Call}" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                <Frame.GestureRecognizers>
+                                    <!--<TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>-->
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame HasShadow="False" Grid.Column="1" Padding="10" Grid.Row="1" CornerRadius="10" BackgroundColor="#034C82">
+                                <Label Text="WhatsApp" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                <Frame.GestureRecognizers>
+                                    <!--<TapGestureRecognizer Command="{Binding OpenWhatsAppForAddCommand}"/>-->
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame HasShadow="False"  Grid.Row="2" Grid.ColumnSpan="2" Padding="10" CornerRadius="10" BackgroundColor="#034C82">
+                                    <Label Text="Company Location" FontSize="19"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                
+                            </Grid>
+                            <StackLayout Margin="0,5,0,15" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="facebook.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpenFaceBookCompanyCommand}"/>-->
+                                    </Frame.GestureRecognizers>    
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="twitter.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpenSnapchatCompanyCommand}"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0" WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="instgram.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpenInstgramCompanyCommand}"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <Frame CornerRadius="10" Padding="0"  WidthRequest="50" HeightRequest="50">
+                                    <ffimageloading:CachedImage Source="tok.png" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    <Frame.GestureRecognizers>
+                                        <!--<TapGestureRecognizer Command="{Binding OpentokCompanyCommand}"/>-->
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                
+                            </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

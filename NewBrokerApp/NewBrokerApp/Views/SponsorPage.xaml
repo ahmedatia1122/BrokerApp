@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="NewBrokerApp.Views.SponsorPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto">
+            <StackLayout Grid.Row="0"  HeightRequest="70" Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="Fill" >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="20,10,20,10">
+                    <Image Source="arrow" HorizontalOptions="Start" BackgroundColor="Transparent" WidthRequest="10" HeightRequest="10">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackUpCommand}" NumberOfTapsRequired="1"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="{Static resx:AppResources.Sponsor}" Margin="20,0,20,0" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" FontSize="20"  HorizontalTextAlignment="Center"></Label>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <CollectionView ItemsSource="{Binding SponsorsItem}" Margin="15" >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="19" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#e3e3e3" CornerRadius="15" HasShadow="False">
+                                <StackLayout>
+                                    <Image Source="{Binding photo}"  HeightRequest="150" Aspect="AspectFill" BackgroundColor="White"></Image>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="16"  ></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+            <StackLayout Grid.Row="2" x:Name="stkFooter" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

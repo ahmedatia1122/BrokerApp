@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                FlowDirection="RightToLeft"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+               xmlns:dxe="clr-namespace:DevExpress.XamarinForms.Editors;assembly=DevExpress.XamarinForms.Editors"
+             x:Class="NewBrokerApp.Views.ComboPage">
+   
+    <ContentPage.Content>
+        <ScrollView>
+             <StackLayout>
+            <!--<xc:CalendarView x:Name="calendar"   NavigationArrowCornerRadius="0"  NavigationArrowBackgroundColor="Transparent"  NavigationArrowColor="Transparent"  DateSelectionChanged="calendar_DateSelectionChanged" SelectionMode="Multiple" />-->
+                <dxe:ComboBoxEdit
+              BorderColor="#F5F5F5"
+                FocusedBorderColor="#F5F5F5"
+                    PlaceholderText="Government"
+                    PlaceholderColor="Red"
+                    TextFontSize="15"
+                    SelectedItem="{Binding SelectGovernment}"
+                   ValueMember=""
+                    AffixFontSize="Small" 
+                    LabelText="Government"
+                ItemsSource="{Binding Governments}"
+                DisplayMember="Name"
+                VerticalOptions="Start"
+                 IsLabelFloating="True"
+                    IsEndIconVisible="True"
+                    IsStartIconVisible="True"
+                    StartIcon="downaarrow.png"
+                    EndIcon="downaarrow.png"
+                    
+                    IsDropDownIconVisible="False"
+       
+                BoxMinWidth="10"
+              FlowDirection="RightToLeft"
+         CornerRadius="10"
+                TextHorizontalAlignment="Center"
+               >
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout WidthRequest="100" Margin="10">
+                                <Label Text="{Binding Name}" Margin="10"></Label>
+
+                            </StackLayout>
+
+
+                        </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+
+            </StackLayout>
+        </ScrollView>
+       
+    </ContentPage.Content>
+</ContentPage>

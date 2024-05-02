@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:rg="http://rotorgames.com"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+              xmlns:vm="clr-namespace:NewBrokerApp.ViewModels" 
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="NewBrokerApp.Views.Common.PropertyDetailsPopUp">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="0,30,0,0" VerticalOptions="End"  BackgroundColor="#fff" HeightRequest="480" WidthRequest="390"  CornerRadius="20,20,0,0" 
+                                              Padding="20,20,20,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" Text="{Binding AddDetailsItem.Title}" FontAttributes="Bold" TextColor="Black" FontSize="19"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="10" Spacing="15">
+                            <ffimageloadingsvg:SvgCachedImage IsVisible="false" Source="sharealt.svg"  HorizontalOptions="EndAndExpand" WidthRequest="30" HeightRequest="20">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <!--<TapGestureRecognizer Command="{Binding AddAddFavouriteCommand}"/>-->
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                            <ffimageloadingsvg:SvgCachedImage  Source="{Binding ShowFav}"  HorizontalOptions="EndAndExpand" WidthRequest="30" HeightRequest="20">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AddsViewModel}},Path=AddAddFavouriteCommand }" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                        </StackLayout>
+                    </StackLayout>
+                    <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                    <StackLayout  Spacing="20" VerticalOptions="CenterAndExpand">
+
+                        <CarouselView  ItemsSource="{Binding AddDetailsItem.Photos}" HeightRequest="150" >
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <ffimageloading:CachedImage Source="{Binding .}"  HeightRequest="150" Aspect="AspectFit"></ffimageloading:CachedImage>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <!--<StackLayout Margin="5">
+                            <ffimageloading:CachedImage Source="AddPhoto.png" WidthRequest="40" HeightRequest="30"></ffimageloading:CachedImage>
+                        </StackLayout>-->
+                        <Label Text="{Binding AddDetailsItem.PropertyFor}" FontSize="14" FontAttributes="Bold"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding AddDetailsItem.Price}"  VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label Text="{Binding AddDetailsItem.EGP}"  VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16"  FontAttributes="Bold"></Label>
+                            <Label Text="/"  IsVisible="{Binding ShowSellAndRent}" VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16"  FontAttributes="Bold"></Label>
+                            <Label Text="{Binding ShowRentValue}"  IsVisible="{Binding ShowSellAndRent}" VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16" FontAttributes="Bold" ></Label>
+                            <Label Text="{Binding AddDetailsItem.RentValueName}"  IsVisible="{Binding ShowSellAndRent}" VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16" FontAttributes="Bold" ></Label>
+
+                        </StackLayout>
+                        
+                    <Frame BackgroundColor="#034C82" HasShadow="False" HeightRequest="50" Padding="5" CornerRadius="10">
+                            <Label 
+                            BackgroundColor="Transparent"
+                                 Text="{Static resx:AppResources.Details}"
+                        
+                            FontSize="20" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Primary}" >
+                            </Label>
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer Command="{Binding OpenAddDetailPopUpCommand}" NumberOfTapsRequired="1"/>
+
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+
+                        <Frame BackgroundColor="#C8A455" HeightRequest="50" HasShadow="False" Padding="5" CornerRadius="10">
+                            <Label  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"
+                            BackgroundColor="Transparent"
+                     Text="{Static resx:AppResources.Cancel}" 
+                            FontSize="20"
+                        TextColor="{StaticResource Primary}" >
+
+                            </Label>
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer Command="{Binding BackPopupCommand}" NumberOfTapsRequired="1"/>
+
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+    </PanCake:PancakeView>
+    </rg:PopupPage>

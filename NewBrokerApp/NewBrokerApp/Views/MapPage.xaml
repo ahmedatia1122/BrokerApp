@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:usercontrols="clr-namespace:DropdownMenu.UserControls;assembly=DropdownMenu"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="White"
+                 xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+             xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:panck="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="NewBrokerApp.Views.MapPage">
+   
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*,Auto" BackgroundColor="White">
+            <StackLayout Grid.Row="0" HeightRequest="70" BackgroundColor="White" >
+                <Grid ColumnDefinitions="25,2.3*,25" VerticalOptions="CenterAndExpand" Margin="10">
+                    <ffimageloadingsvg:SvgCachedImage Source="newMenu.svg" Grid.Column="0" HeightRequest="25" WidthRequest="35">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                    <panck:PancakeView Grid.Column="1" HeightRequest="100" CornerRadius="5">
+                        <panck:PancakeView.Border>
+                            <panck:Border Color="#e3e3e3" Thickness="1"></panck:Border>
+                        </panck:PancakeView.Border>
+                        <StackLayout Orientation="Horizontal" Padding="10,0">
+                            <ffimageloadingsvg:SvgCachedImage Source="newSearch.svg" WidthRequest="22" HeightRequest="30" BackgroundColor="Transparent">
+                                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5"/>
+                                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            </ffimageloadingsvg:SvgCachedImage>
+                            <custom:CustomEditor   FontFamily="Light"  x:Name="txtLocation" TextColor="Black" VerticalOptions="CenterAndExpand"  FontSize="17" Text="" HorizontalOptions="FillAndExpand" PlaceholderColor="Black" Placeholder="{Static resx:AppResources.SearchProperties}"></custom:CustomEditor>
+                        </StackLayout>
+                    </panck:PancakeView>
+                    <!--<ImageButton Source="Search"   BorderColor="Gray" BackgroundColor="Transparent" BorderWidth="1" Grid.Column="1"></ImageButton>-->
+                    <StackLayout Grid.Column="2" WidthRequest="25" HeightRequest="25" VerticalOptions="Center">
+                        <ffimageloadingsvg:SvgCachedImage Source="newFilter.svg"  Aspect="AspectFit"  BackgroundColor="Transparent">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <AbsoluteLayout Grid.Row="1">
+                <maps:Map x:Name="MyMap"   CameraIdled="MyMap_CameraIdled"  SelectedPinChanged="MyMap_SelectedPinChanged"   
+                     AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+                </maps:Map>
+                <ImageButton Source="gps.png" x:Name="topGps" IsVisible="false" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.95,.45,.2,50" Clicked="ImageButton_Clicked" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional"></ImageButton>
+                <ImageButton Source="gps.png" x:Name="downGps"  BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.99,.85,.2,50" Clicked="ImageButton_Clicked" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional"></ImageButton>
+
+                <StackLayout Margin="7" >
+                    <CollectionView HeightRequest="40" SelectionChanged="CollectionView_SelectionChanged" SelectedItem="{Binding SelectAll}"  SelectionMode="Single" ItemsSource="{Binding Buttons}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal"  VerticalItemSpacing="10"  />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView Padding="5,0,5,0">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="panckData" Property="pankace:PancakeView.BackgroundColor" Value="#E0E9F0" />
+                                                    <Setter TargetName="_label" Property="Label.TextColor" Value="#004D82" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Grid ColumnDefinitions="*">
+
+                                        <pankace:PancakeView x:Name="panckData" Grid.Column="0" CornerRadius="10" Padding="0" HeightRequest="40" BackgroundColor="White" >
+                                            <pankace:PancakeView.Border>
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <Label x:Name="_label" Grid.Column="1" Text="{Binding ButtonText}" FontSize="11" Padding="10" TextColor="Black" ></Label>
+                                        </pankace:PancakeView>
+                                    </Grid>
+                                </ContentView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
+                <ffimageloadingsvg:SvgCachedImage Source="DownArrowSvg" IsVisible="false"  x:Name="arrowImage" AbsoluteLayout.LayoutBounds="0.4,.66,1,40" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+                <ffimageloadingsvg:SvgCachedImage Source="UpArrowSvg" IsVisible="false" x:Name="upImage" AbsoluteLayout.LayoutBounds="0.7,.90,1,40" AbsoluteLayout.LayoutFlags="YProportional,XProportional,WidthProportional">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+
+                <BoxView x:Name="boxImage"  IsVisible="false" HeightRequest="3"  Margin="10,0,10,0" AbsoluteLayout.LayoutBounds="0,.90,1,10"  BackgroundColor="#034C82" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"></BoxView>
+                <StackLayout Orientation="Horizontal" IsVisible="false" x:Name="stkCompany"  AbsoluteLayout.LayoutBounds="0,.87,1,173" BackgroundColor="#034C82" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional">
+                    <CarouselView ItemsSource="{Binding SponsorsItem}" HeightRequest="150">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" TextColor="White" Margin="10" FontSize="14"></Label>
+                                    <Image Source="{Binding Photo}" WidthRequest="200" HeightRequest="130" Aspect="Fill" HorizontalOptions="StartAndExpand"></Image>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_6" NumberOfTapsRequired="1"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+                <StackLayout Margin="10" x:Name="StkFooter" AbsoluteLayout.LayoutBounds="0,1,1,81" BackgroundColor="White" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional"></StackLayout>
+            </AbsoluteLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:resx="clr-namespace:NewBrokerApp.Resources"  
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                xmlns:rg="http://rotorgames.com"
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="NewBrokerApp.Views.Common.PaymentPopUPAdminConfirmProject">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="0,30,0,0" VerticalOptions="End"  BackgroundColor="#fff" HeightRequest="350" WidthRequest="390"  CornerRadius="20,20,0,0" 
+                                              Padding="20,20,20,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" Text="{Static resx:AppResources.RegisteredSuccessfully}" FontAttributes="Bold" TextColor="Black" FontSize="19"/>
+                        <ffimageloadingsvg:SvgCachedImage  
+                        Grid.Column="0"  Source="remove" HorizontalOptions="End" 
+                        WidthRequest="15" HeightRequest="15" VerticalOptions="Start">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <!--<TapGestureRecognizer Tapped="OnClose"/>-->
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </StackLayout>
+                    <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                    <StackLayout  Spacing="15" VerticalOptions="CenterAndExpand">
+                        <ffimageloadingsvg:SvgCachedImage Aspect="AspectFit" Source="panaPayment.svg" HeightRequest="200" ></ffimageloadingsvg:SvgCachedImage>
+                        <Label Text="{Static resx:AppResources.AvertiserisPending}"></Label>
+
+
+                        <Button Text="{Static resx:AppResources.Continue}" TextColor="{StaticResource Primary}"  Clicked="Button_Clicked" FontSize="20"   BackgroundColor="#034C82" Padding="5" CornerRadius="10">
+                            
+                        </Button>
+
+                       
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+        <PanCake:PancakeView.GestureRecognizers>
+            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>  
+        </PanCake:PancakeView.GestureRecognizers>
+    </PanCake:PancakeView>
+    </rg:PopupPage>

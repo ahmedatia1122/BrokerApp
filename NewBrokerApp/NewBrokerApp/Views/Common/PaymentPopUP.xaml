@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:resx="clr-namespace:NewBrokerApp.Resources"  
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+                xmlns:rg="http://rotorgames.com"
+               
+             x:Class="NewBrokerApp.Views.Common.PaymentPopUP">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="0,30,0,0" VerticalOptions="End"  BackgroundColor="#fff" HeightRequest="500" WidthRequest="390"  CornerRadius="20,20,0,0" 
+                                              Padding="20,20,20,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" x:Name="txtTitle" Text="{Static resx:AppResources.PaymentSuccessfully}" FontAttributes="Bold" TextColor="Black" FontSize="19"/>
+                        <ffimageloadingsvg:SvgCachedImage  
+                        Grid.Column="0"  Source="remove" HorizontalOptions="End" 
+                        WidthRequest="15" HeightRequest="15" VerticalOptions="Start">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <!--<TapGestureRecognizer Tapped="OnClose"/>-->
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </StackLayout>
+                    <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                    <StackLayout  Spacing="15" VerticalOptions="CenterAndExpand">
+                        <ffimageloadingsvg:SvgCachedImage Aspect="AspectFit" Source="panaPayment.svg" HeightRequest="200" ></ffimageloadingsvg:SvgCachedImage>
+                        <Label Text="{Static resx:AppResources.trustBroker}"></Label>
+
+                        <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+                        <Label IsVisible="false" Text="{Binding LastAdvertise}"></Label>
+                        <Label  Text="{Static resx:AppResources.adReview}"></Label>
+                        <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                        <Label IsVisible="false" Text="{Static resx:AppResources.invoicesent}"></Label>
+                        <BoxView HeightRequest="2" IsVisible="false" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                        <Label IsVisible="false" Text="{Static resx:AppResources.pointsHaveAdded}"></Label>
+                        <!--<Frame BackgroundColor="#034C82" HasShadow="False" Padding="5" CornerRadius="10">
+                            <Label 
+                            BackgroundColor="Transparent"
+                        Text="Done"
+                            FontSize="20" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Primary}" >
+                            </Label>
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer Command="{Binding PublishPropertyCommand}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>-->
+                        <Button Text="{Static resx:AppResources.Done}" TextColor="{StaticResource Primary}"  FontSize="20"  Command="{Binding PublishPropertyCommand}" BackgroundColor="#034C82" Padding="5" CornerRadius="10">
+                            
+                        </Button>
+
+                       
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+        <PanCake:PancakeView.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding PublishPropertyCommand}"/>  
+        </PanCake:PancakeView.GestureRecognizers>
+    </PanCake:PancakeView>
+    </rg:PopupPage>

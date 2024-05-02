@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            WidthRequest="65" 
+             HeightRequest="50"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             AnchorX="0.5"
+             AnchorY="1.0"
+           
+             x:Class="NewBrokerApp.Views.mapIconPage">
+    <!--<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsVisible="false">
+
+        <Image Source="Pin_Bluee.png" Aspect="AspectFill"
+            AbsoluteLayout.LayoutBounds="0, 0, 130, 100"
+            AbsoluteLayout.LayoutFlags="None" />
+        <Image AbsoluteLayout.LayoutBounds="0, 10, 120, 35"
+                AbsoluteLayout.LayoutFlags="None"  Source="Time.png" Aspect="AspectFit"></Image>
+        --><!--<Label Text="{Binding Display}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontSize="11" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="0, 10, 45, 45"
+                AbsoluteLayout.LayoutFlags="None" />--><!--
+        <Label Text="{Binding Display}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontSize="15" FontAttributes="Bold" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="0, 50, 120, 30"
+                AbsoluteLayout.LayoutFlags="None" />
+        --><!--<Label Text="{Binding Display}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontSize="11" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="40, 50, 45, 45"
+                AbsoluteLayout.LayoutFlags="None" />--><!--
+
+    </AbsoluteLayout>-->
+    <!--<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  IsVisible="{Binding Model.IsCompany}">
+
+        <Image Source="{Binding Model.BackgroundImagee}" Aspect="AspectFit"
+            AbsoluteLayout.LayoutBounds="0, 0, 75, 110"
+            AbsoluteLayout.LayoutFlags="None" />
+        <Image  WidthRequest="100"  HeightRequest="40" 
+                AbsoluteLayout.LayoutBounds="0, 40, 35, 20"
+                AbsoluteLayout.LayoutFlags="None" x:Name="imgCompany" ></Image>
+        --><!--<Label Text="{Binding Display}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontSize="15" FontAttributes="Bold" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="2, 40, 30, 20"
+                AbsoluteLayout.LayoutFlags="None" />--><!--
+        <Label Text="{Binding Model.Price}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="11" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="5, 40,80, 20"
+                AbsoluteLayout.LayoutFlags="None" />
+    </AbsoluteLayout>
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"  x:Name="StkNoCompany" IsVisible="{Binding Model.IsNoCompany}" >
+
+        <Image Source="{Binding Model.BackgroundImagee}" Aspect="AspectFit"
+            AbsoluteLayout.LayoutBounds="0, 0, 60, 110"
+            AbsoluteLayout.LayoutFlags="None" />
+      
+        --><!--<Label Text="{Binding Display}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontSize="15" FontAttributes="Bold" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="2, 40, 30, 20"
+                AbsoluteLayout.LayoutFlags="None" />--><!--
+        <Label Text="{Binding Model.Price}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="11" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="0, 40,60, 20"
+                AbsoluteLayout.LayoutFlags="None" />
+    </AbsoluteLayout>-->
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+        <Image Source="{Binding Model.BackgroundImagee}" 
+            AbsoluteLayout.LayoutBounds="0, 0, 65, 50"
+            AbsoluteLayout.LayoutFlags="None" />
+        <Image  WidthRequest="100"  HeightRequest="40"  IsVisible="{Binding Model.IsCompany}"
+                AbsoluteLayout.LayoutBounds="0, 13, 25, 20"
+                AbsoluteLayout.LayoutFlags="None" x:Name="imgCompany" ></Image>
+        <Label Text="{Binding Model.Price}" TextColor="White" FontAttributes="Bold" FontSize="9" HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="18, 13, 35, 16"
+                AbsoluteLayout.LayoutFlags="None" />
+        <!--<Label Text="{Binding Model.Price}" TextColor="White"  HorizontalTextAlignment="Center" 
+                BackgroundColor="Transparent" WidthRequest="100" FontAttributes="Bold" VerticalTextAlignment="Center" FontSize="11" HeightRequest="40"
+                AbsoluteLayout.LayoutBounds="0, 40,60, 20"
+                AbsoluteLayout.LayoutFlags="None" />-->
+
+    </AbsoluteLayout>
+</StackLayout>

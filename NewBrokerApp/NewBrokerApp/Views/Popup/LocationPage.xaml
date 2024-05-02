@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:rg="http://rotorgames.com"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+               xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+               xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="NewBrokerApp.Views.Popup.LocationPage">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="0,30,0,0" VerticalOptions="FillAndExpand"  BackgroundColor="#fff" HeightRequest="400" WidthRequest="390"  CornerRadius="20,20,0,0" 
+                                              Padding="20,20,20,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+        <Grid RowDefinitions="Auto,*" BackgroundColor="White">
+            <StackLayout Orientation="Horizontal" Grid.Row="0">
+                <ffimageloadingsvg:SvgCachedImage  
+                        Grid.Column="0"  Source="Vectors.svg" HorizontalOptions="End" 
+                        WidthRequest="15" HeightRequest="15" VerticalOptions="Start">
+                    <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                </ffimageloadingsvg:SvgCachedImage>
+            </StackLayout>
+            <!--<StackLayout x:Name="stack" Grid.Row="1">
+                <maps:Map  PinDragStart="map_PinDragStart" PinDragEnd="map_PinDragEnd" HasZoomEnabled="False"   x:Name="map"></maps:Map>
+            </StackLayout>-->
+            <StackLayout x:Name="stack" Grid.Row="1">
+                <maps:Map  MapClicked="map_MapClicked"   x:Name="map"></maps:Map>
+                
+            </StackLayout>
+
+        </Grid>
+    </PanCake:PancakeView>
+</rg:PopupPage>

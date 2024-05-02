@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources"
+              xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             BackgroundColor="White"
+              xmlns:vm="clr-namespace:NewBrokerApp.ViewModels" 
+             x:Class="NewBrokerApp.Views.Company.AddProjectPage">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="20,0,20,0">
+
+                <StackLayout VerticalOptions="CenterAndExpand" >
+                   <Image Source="{Static resx:AppResources.TopArrow}" HorizontalOptions="Start" HeightRequest="25" ></Image>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Text="{Static resx:AppResources.CompanyProject}" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Fill" IsVisible="{Binding ShowCreatProject}" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <ffimageloading:CachedImage Source="projectframe.png" Aspect="Fill" HeightRequest="390"></ffimageloading:CachedImage>
+                <Frame BackgroundColor="#034C82" CornerRadius="10" Padding="5" HeightRequest="35" HasShadow="False" Margin="20,70,20,0">
+                    <Label Text="{Static resx:AppResources.AddnewProject}" VerticalOptions="CenterAndExpand" TextColor="white"  HorizontalOptions="CenterAndExpand"></Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Margin="15,20,15,0" IsVisible="{Binding ShowListProject}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+                <ScrollView>
+                    <StackLayout Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <CollectionView HeightRequest="{Binding HeightRequest}" BackgroundColor="White"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                 VerticalScrollBarVisibility="Never" SelectionMode="None"
+                                        HorizontalScrollBarVisibility="Never"
+                                ItemsSource="{Binding ProjectsItems}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="15" HorizontalItemSpacing="15" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions=".76*,.12*,.12*" RowDefinitions="50" ColumnSpacing="20" BackgroundColor="Transparent">
+                                        <Frame Grid.Column="0" Padding="10" HeightRequest="30" HasShadow="False" BackgroundColor="#EBEBEB" CornerRadius="7">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                        </Frame>
+                                        <Frame Grid.Column="1"   HasShadow="False" HeightRequest="30" Padding="0" Margin="0,5,0,5"  BackgroundColor="#0C4B81" CornerRadius="7">
+                                            <ffimageloading:CachedImage Source="edit" Aspect="AspectFill" HorizontalOptions="Fill" WidthRequest="25" HeightRequest="25">
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProjectViewModel}},Path=OpenProjectDetailsCommand }" CommandParameter="{Binding}" NumberOfTapsRequired="1"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>
+                                        </Frame>
+                                        <Frame Grid.Column="2" HasShadow="False" HeightRequest="30" Padding="0" Margin="0,5,0,5"  BackgroundColor="#0C4B81" CornerRadius="7">
+                                            <ffimageloading:CachedImage Source="delete" Aspect="AspectFill" HorizontalOptions="Fill" WidthRequest="25" HeightRequest="25">
+                                                <ffimageloading:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
+                                                </ffimageloading:CachedImage.GestureRecognizers>
+                                            </ffimageloading:CachedImage>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <StackLayout  VerticalOptions="FillAndExpand" Margin="5">
+                            <Frame BackgroundColor="#034C82" CornerRadius="10" Padding="5" HeightRequest="35" HasShadow="False">
+                                <Label Text="{Static resx:AppResources.AddnewProject}" VerticalOptions="CenterAndExpand" TextColor="white"  HorizontalOptions="CenterAndExpand"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                        <ffimageloading:CachedImage Margin="0,230,0,0" VerticalOptions="EndAndExpand" HeightRequest="200" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

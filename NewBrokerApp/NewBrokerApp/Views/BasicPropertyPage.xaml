@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+                      xmlns:usercontrols="clr-namespace:DropdownMenu.UserControls;assembly=DropdownMenu"
+             xmlns:custom="clr-namespace:NewBrokerApp.Helpers"
+             xmlns:pankace="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Add Apartment"
+             BackgroundColor="White"
+             x:Class="NewBrokerApp.Views.BasicPropertyPage">
+    <ContentPage.Content>
+       
+            <Grid  RowDefinitions="Auto,*">
+                <Frame Padding="6" Grid.Row="0" Margin="20">
+                    <StackLayout Orientation="Horizontal" Margin="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Basic Details" x:Name="txtTitle" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                    <ffimageloading:CachedImage Source="downArrow.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand"></ffimageloading:CachedImage>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <StackLayout  HorizontalOptions="FillAndExpand" x:Name="stkBasic" IsVisible="True" VerticalOptions="FillAndExpand" Grid.Row="1">
+
+                    <StackLayout Margin="20" Spacing="25">
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                            <Frame Grid.Column="0" Padding="5" BackgroundColor="#e1e9f0" CornerRadius="5">
+                            <Label Text="Sell" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#034C82" FontSize="16" ></Label>
+
+                            </Frame>
+                            <Frame Grid.Column="1"  Padding="5" HasShadow="False" BackgroundColor="WhiteSmoke" CornerRadius="5">
+                                <Label Text="Rent" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+
+                            </Frame>
+                        </Grid>
+                    <Frame HorizontalOptions="FillAndExpand" HasShadow="False" BorderColor="#F5F5F5" CornerRadius="10" Padding="5" VerticalOptions="FillAndExpand">
+                        <custom:BorderlessEntry Placeholder="{Static resx:AppResources.AdTitle}" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+                        </Frame>
+                    <Label Text="{Static resx:AppResources.writeTitle}" TextColor="#999CA0" FontSize="13" ></Label>
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" BorderColor="Black" CornerRadius="5">
+                                <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_7"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                            <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                    <ffimageloading:CachedImage VerticalOptions="EndAndExpand" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+
+                </StackLayout>
+                <StackLayout Grid.Row="1" IsVisible="false" Spacing="25" x:Name="StkAddress" Margin="20,0,20,10">
+                <Frame Padding="6" Grid.Row="0" Margin="0" BorderColor="#F5F5F5" HasShadow="False">
+                        <StackLayout Orientation="Horizontal" Margin="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="City" x:Name="txtCity" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#999CA0" FontSize="16" ></Label>
+                        <ffimageloading:CachedImage Source="downArrow.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="EndAndExpand"></ffimageloading:CachedImage>
+
+                    </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+
+                    <Frame Grid.Column="0" HasShadow="False" Padding="5" BackgroundColor="White" CornerRadius="5" BorderColor="#F5F5F5">
+                        <custom:BorderlessEntry Placeholder="Nel/Compound" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+
+                        </Frame>
+                    <Frame Grid.Column="1" HasShadow="False"  Padding="5"  BackgroundColor="White" BorderColor="#F5F5F5" CornerRadius="5">
+                        <custom:BorderlessEntry Placeholder="Street" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+
+                        </Frame>
+                    </Grid>
+                <Frame Grid.Column="0" HasShadow="False" Padding="5" BackgroundColor="White" CornerRadius="5"  BorderColor="#F5F5F5">
+                    <custom:BorderlessEntry Placeholder="Building No" PlaceholderColor="#999CA0" FontSize="16"></custom:BorderlessEntry>
+
+                    </Frame>
+                    <StackLayout Orientation="Horizontal" >
+                    <ffimageloading:CachedImage Source="gps.png" Aspect="AspectFit" WidthRequest="50" HeightRequest="30" HorizontalOptions="EndAndExpand"></ffimageloading:CachedImage>
+
+                    <Label  TextColor="#999CA0" FontSize="12" Text="{Static resx:AppResources.getaddress}"></Label>
+                    </StackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" BorderColor="Black"  CornerRadius="5">
+                            <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Black" FontSize="16" ></Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_10"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                        <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                            <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_3"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                    <ffimageloading:CachedImage VerticalOptions="EndAndExpand" Source="imgBackground2.png" ></ffimageloading:CachedImage>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1" IsVisible="false" Margin="20,0,20,0" VerticalOptions="FillAndExpand" x:Name="stkDetails">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="30">
+                        <Grid ColumnDefinitions="15,2*" RowDefinitions="Auto,Auto" RowSpacing="15">
+                            <ffimageloading:CachedImage Source="areaIcon.png" Grid.Column="0" Grid.Row="0"></ffimageloading:CachedImage>
+                            <pankace:PancakeView Grid.Column="1" HeightRequest="40" BackgroundColor="White" Padding="5,0,5,0"  CornerRadius="5" Grid.Row="0">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="2" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="{Static resx:AppResources.Propertyarea}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <ffimageloading:CachedImage Source="FloorIcon.png" Grid.Column="0" Grid.Row="1"></ffimageloading:CachedImage>
+                            <pankace:PancakeView Grid.Column="1" HeightRequest="40"  CornerRadius="5" Grid.Row="1" Padding="5,0,5,0">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="2" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry  Placeholder="{Static resx:AppResources.Floor}" PlaceholderColor="#999CA0"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloading:CachedImage Source="Status.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Property Status" FontAttributes="Bold" TextColor="Black" FontSize="14"></Label>
+                            </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*">
+                                <pankace:PancakeView Grid.Column="0"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="New" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="Used" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="Renewed" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloading:CachedImage Source="finshing.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Finishing" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                            </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0"  CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="Without" FontSize="11" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="SemiFinised" TextColor="Black" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="Full" TextColor="Black" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  CornerRadius="10" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="HighQuality" TextColor="Black" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                              <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="rooms.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Rooms" TextColor="Black" FontAttributes="Bold" FontSize="16"></Label>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                        </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                              <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="reciption.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Reception" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                        </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                                          <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="Dining.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Dining" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                        </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                               <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloading:CachedImage Source="balacony.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Balcony" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                        </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                                              <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloading:CachedImage Source="kitchen.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Kitchen" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                        </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                            <ffimageloading:CachedImage Source="Chat.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Toliet" FontAttributes="Bold" TextColor="Black" FontSize="16"></Label>
+                        </StackLayout>
+                            <Grid ColumnDefinitions="*,*,*,*,*">
+                                <pankace:PancakeView Grid.Column="0" BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="1" FontSize="13" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="1"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="10">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="2" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="2" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="3" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="3"  BackgroundColor="#EBEBEB" CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="4" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                                <pankace:PancakeView Grid.Column="4" BackgroundColor="#EBEBEB"  CornerRadius="5" Padding="5">
+                                    <pankace:PancakeView.Border>
+                                        <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                    </pankace:PancakeView.Border>
+                                    <Label Text="5+" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                </pankace:PancakeView>
+                            </Grid>
+                        </StackLayout>
+                        
+                        <Grid ColumnDefinitions="1.3*,.5*,1.3*,.5*">
+                            <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                <ffimageloading:CachedImage Source="finished.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Funished" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="2">
+                                <ffimageloading:CachedImage Source="elevtar.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Elevatar" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                <ffimageloading:CachedImage Source="parking.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Parking" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray" Grid.Row="1"></CheckBox>
+                            <!--<StackLayout Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                                <ffimageloading:CachedImage Source="Chat.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Bool" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray" Grid.Row="1"></CheckBox>-->
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                                <ffimageloading:CachedImage Source="Vector7.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Garden" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray"  Grid.Row="2"></CheckBox>
+                            <pankace:PancakeView Grid.Row="2" Padding="5,0,0,0" Grid.Column="2" HeightRequest="40" Grid.ColumnSpan="2" >
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="Garden Area"></custom:BorderlessEntry>
+
+                            </pankace:PancakeView>
+                        </Grid>
+                        <StackLayout Spacing="15">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                <ffimageloading:CachedImage Source="document.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="Documents" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="*,*">
+                            <pankace:PancakeView Grid.Column="0" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="Registered" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="1" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                    <Label Text="Registerable" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="0" Grid.Row="1" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                    <Label Text="Unregistered" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="1"  Grid.Row="1" BackgroundColor="WhiteSmoke" CornerRadius="5" HeightRequest="40">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                    <Label Text="Unregisterable" TextColor="Black" FontAttributes="Bold" FontSize="13" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                        </Grid>
+                        </StackLayout>
+                    
+                        <BoxView HeightRequest="1" Color="Gray" HorizontalOptions="FillAndExpand"></BoxView>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloading:CachedImage Source="facilities.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Facilities" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="1.3*,.5*,1.3*,.5*">
+                            <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                <ffimageloading:CachedImage Source="water.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Water" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="2">
+                                <ffimageloading:CachedImage Source="gas.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Gas" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+                                    <ffimageloading:CachedImage Source="electry.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Electricity" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray" Grid.Row="1"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="2" Grid.Row="1">
+                                <ffimageloading:CachedImage Source="phone.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Phone" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="3" Color="Gray" Grid.Row="1"></CheckBox>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                                <ffimageloading:CachedImage Source="internet.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Internet" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </StackLayout>
+                            <CheckBox Grid.Column="1" Color="Gray" Grid.Row="2"></CheckBox>
+                            
+                        </Grid>
+                        </StackLayout>
+                        
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                                <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontAttributes="Bold" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_11"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1"  Padding="10" HasShadow="False" BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_4"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+                  
+                </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkPhoto">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="*,*,*" RowDefinitions="99" ColumnSpacing="35" RowSpacing="15">
+                            <pankace:PancakeView Grid.Column="0" BackgroundColor="WhiteSmoke"  CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="30" TextColor="#999CA0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="1" BackgroundColor="WhiteSmoke"  CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="30" TextColor="#999CA0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="2" BackgroundColor="WhiteSmoke" CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#EBEBEB"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="30" TextColor="#999CA0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <Frame HorizontalOptions="FillAndExpand" HasShadow="False" Padding="10" BorderColor="#e3e3e3" CornerRadius="5" BackgroundColor="White">
+                            <Label Text="Add More Photos" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                        </Frame>
+                        <Label HorizontalOptions="FillAndExpand" FontSize="16"  TextColor="#999CA0" Text="{Static resx:AppResources.clearPicture}" ></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloading:CachedImage Source="description.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                            <Label Text="{Static resx:AppResources.PropertyDescription}" FontAttributes="Bold" FontSize="18" TextColor="Black"></Label>
+                        </StackLayout>
+                        <pankace:PancakeView HeightRequest="140">
+                            <pankace:PancakeView.Border>
+                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                            </pankace:PancakeView.Border>
+                            <Editor Placeholder="{Static resx:AppResources.PropertyDescription}" PlaceholderColor="#999CA0">
+
+                            </Editor>
+                        </pankace:PancakeView>
+                        <!--<StackLayout Orientation="Horizontal">
+                            <ffimageloading:CachedImage Source="Chat.png"></ffimageloading:CachedImage>
+                            <Label Text="Layout" FontSize="18" TextColor="Black"></Label>
+                        </StackLayout>
+                        <Grid ColumnDefinitions="*,*,*" RowDefinitions="99" ColumnSpacing="35" RowSpacing="15">
+                            <pankace:PancakeView Grid.Column="0" BackgroundColor="WhiteSmoke"  CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="22" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="1" BackgroundColor="WhiteSmoke"  CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="22" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                            <pankace:PancakeView Grid.Column="2" BackgroundColor="WhiteSmoke" CornerRadius="10" Padding="10">
+                                <pankace:PancakeView.Border>
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <Label Text="+" FontSize="22" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <Frame HorizontalOptions="FillAndExpand" HasShadow="False" Padding="10" CornerRadius="10" BackgroundColor="White" BorderColor="#e3e3e3">
+                            <Label Text="Add More Photos" TextColor="Black" FontSize="18" HorizontalTextAlignment="Center"></Label>
+                        </Frame>-->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BackgroundColor="White" CornerRadius="5" BorderColor="Black">
+                                <Label Text="Back" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_12"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="Next" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_5"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkPrice">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="5" VerticalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="15,*">
+                            <ffimageloading:CachedImage Source="price"></ffimageloading:CachedImage>
+                            <pankace:PancakeView Grid.Column="1">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="Price"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <Label Text="*in Egy" Grid.Column="1" Grid.Row="1"></Label>
+                        </Grid>
+                        <StackLayout Spacing="10">
+                            <StackLayout Orientation="Horizontal" Spacing="15">
+                                <ffimageloading:CachedImage Source="facilities.png" WidthRequest="15" HeightRequest="15"></ffimageloading:CachedImage>
+                                <Label Text="Payment Facilities" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            </StackLayout>
+                            <Grid ColumnDefinitions="*,*" HeightRequest="40">
+                                <Frame BackgroundColor="#EBEBEB" Padding="10" CornerRadius="5"  HasShadow="False">
+                                    <Label Text="Allowed" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                                </Frame>
+                                <Frame  BackgroundColor="#EBEBEB" Padding="10" CornerRadius="5" Grid.Column="1" HasShadow="False">
+                                    <Label Text="Not Allowed" TextColor="Black" HorizontalTextAlignment="Center"></Label>
+                                </Frame>
+                            </Grid>
+                        </StackLayout>
+                       
+                        <StackLayout IsVisible="false">
+                            <Grid ColumnDefinitions="30,*">
+                                <ffimageloading:CachedImage Source="Chat"></ffimageloading:CachedImage>
+                                <pankace:PancakeView Grid.Column="1">
+                                    <pankace:PancakeView.Border >
+                                        <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                    </pankace:PancakeView.Border>
+                                    <custom:BorderlessEntry Placeholder="Delivery Date"></custom:BorderlessEntry>
+                                </pankace:PancakeView>
+
+                            </Grid>
+                            <StackLayout Orientation="Horizontal"  Margin="0,20,0,20">
+                                <ffimageloading:CachedImage Source="Chat.png"></ffimageloading:CachedImage>
+                                <Label Text="Installment" FontAttributes="Bold" TextColor="Black" FontSize="20"></Label>
+                            </StackLayout>
+                            <Frame Padding="10" BorderColor="WhiteSmoke">
+
+                                <StackLayout Spacing="20" Padding="10">
+
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="Down Payment"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="Monthly installment"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="Yearly installment"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                    <pankace:PancakeView>
+                                        <pankace:PancakeView >
+                                            <pankace:PancakeView.Border >
+                                                <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                            </pankace:PancakeView.Border>
+                                            <custom:BorderlessEntry Placeholder="Number of Years"></custom:BorderlessEntry>
+                                        </pankace:PancakeView>
+
+                                    </pankace:PancakeView>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                       
+
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                            <Frame Grid.Column="0" Padding="10" HasShadow="False" BorderColor="Black" BackgroundColor="White" CornerRadius="5">
+                                <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_13"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                                <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_6"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                        <Image Source="imgBackground2.png" VerticalOptions="EndAndExpand"></Image>
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkAdvertise">
+                <StackLayout>
+                    <Grid ColumnDefinitions=".5*,2*" RowSpacing="25">
+                        <Frame Grid.Column="0" Padding="5" HasShadow="False" BorderColor="#EBEBEB">
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Label Text="Mr" VerticalTextAlignment="Center"></Label>
+                                <ffimageloading:CachedImage Source="downArrow.png" WidthRequest="15" HeightRequest="15" ></ffimageloading:CachedImage>
+                            </StackLayout>
+                          
+
+                        </Frame>
+                        <Frame Grid.Column="1" BorderColor="#EBEBEB" HasShadow="False" Padding="5">
+                            <custom:BorderlessEntry Placeholder="Name" PlaceholderColor="#999CA0" ></custom:BorderlessEntry>
+                        </Frame>
+                        <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="10" HasShadow="False" Margin="0,0,0,0" BorderColor="#EBEBEB">
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Label Text="Owner/Broker"  VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"></Label>
+                                <ffimageloading:CachedImage Source="downArrow.png" WidthRequest="15" HeightRequest="15" HorizontalOptions="End" ></ffimageloading:CachedImage>
+                            </StackLayout>
+
+
+                        </Frame>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,20,0,0">
+                        <Frame Grid.Column="0" Padding="10" HasShadow="False" BorderColor="Black" BackgroundColor="White" CornerRadius="5">
+                            <Label Text="Back" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_14"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame Grid.Column="1" HasShadow="False" Padding="10"  BackgroundColor="#0C4B81" CornerRadius="5">
+                            <Label Text="Next" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16" ></Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped_15"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                   
+                </StackLayout>
+                <Image Source="imgBackground2.png" VerticalOptions="EndAndExpand"></Image>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand"  Grid.Row="1" IsVisible="false" Margin="20,0,20,20" VerticalOptions="FillAndExpand" x:Name="stkContactInformation">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="24" VerticalOptions="FillAndExpand">
+
+                        <Grid ColumnDefinitions="15,*">
+                            <ffimageloading:CachedImage Source="phone" HeightRequest="15"></ffimageloading:CachedImage>
+                            <pankace:PancakeView Grid.Column="1">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="Mobile Number"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                        </Grid>
+                        <Grid ColumnDefinitions="2*,.5*">
+                            <Label BackgroundColor="Transparent" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.useSameNumber}" Grid.Column="0"></Label>
+                            <Switch Grid.Column="1" OnColor="#034C82" ThumbColor="White" IsToggled="True"></Switch>
+                        </Grid>
+                        <Grid ColumnDefinitions="15,1.5*,*" ColumnSpacing="15">
+                            <ffimageloading:CachedImage Source="Vector" HeightRequest="15"></ffimageloading:CachedImage>
+                            <pankace:PancakeView Grid.Column="1">
+                                <pankace:PancakeView.Border >
+                                    <pankace:Border Thickness="1" Color="#e3e3e3"/>
+                                </pankace:PancakeView.Border>
+                                <custom:BorderlessEntry Placeholder="Mobile Number"></custom:BorderlessEntry>
+                            </pankace:PancakeView>
+                            <Frame Grid.Column="2" Padding="10" BorderColor="#e3e3e3">
+                                <Label Text="{Static resx:AppResources.Verify}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="18"></Label>
+                            </Frame>
+                        </Grid>
+                        <Grid ColumnDefinitions="2*,30">
+                            <Label BackgroundColor="Transparent" VerticalTextAlignment="Center" TextColor="Black" FontSize="15" Text="{Static resx:AppResources.useAccountRegistered}" Grid.Column="0"></Label>
+                            <CheckBox Grid.Column="1" Color="Gray"></CheckBox>
+                        </Grid>
+                        <StackLayout Spacing="20" Margin="0,20,0,0">
+                            <Frame BackgroundColor="#C8A455" HasShadow="False" CornerRadius="10">
+                                <Label Text="Publish" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_9" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <Frame BackgroundColor="#034C82" HasShadow="False" CornerRadius="10">
+                                <Label Text="Save to my Adds" TextColor="White" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_8" NumberOfTapsRequired="1"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                       
+                        
+                    </StackLayout>
+                </ScrollView>
+
+            </StackLayout>
+
+        </Grid>
+       
+       
+       
+    </ContentPage.Content>
+</ContentPage>

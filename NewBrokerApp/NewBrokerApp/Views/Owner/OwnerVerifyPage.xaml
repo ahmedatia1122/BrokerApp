@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:cs="clr-namespace:NewBrokerApp.Helpers"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              Shell.NavBarIsVisible="False"
+             BackgroundColor="White"
+             FlowDirection="LeftToRight"
+               xmlns:resx="clr-namespace:NewBrokerApp.Resources"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="NewBrokerApp.Views.Owner.OwnerVerifyPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid ColumnSpacing="2" RowSpacing="0">
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" HeightRequest="50" BackgroundColor="White" Orientation="Horizontal" Margin="20,0,20,0">
+
+                    <StackLayout VerticalOptions="CenterAndExpand"  HeightRequest="40">
+                        <ffimageloading:CachedImage  Source="{Static resx:AppResources.TopArrow}" WidthRequest="15" HorizontalOptions="Start" HeightRequest="15" ></ffimageloading:CachedImage>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label Text="{Static resx:AppResources.Verification}" HorizontalOptions="CenterAndExpand" BackgroundColor="White"  FontSize="19" HorizontalTextAlignment="Center" TextColor="Black"   VerticalTextAlignment="Center"></Label>
+
+                </StackLayout>
+                <ScrollView  Grid.Row="1">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1">
+
+
+                        <StackLayout Padding="30" HorizontalOptions="FillAndExpand">
+
+                            <Label Text="{Static resx:AppResources.Enterverificationcode}" FontSize="22" TextColor="Black" FontAttributes="Bold" FontFamily="fontdefault"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Grid Padding="30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame BorderColor="#e5e5e5"  HasShadow="False" Padding="5" CornerRadius="5"  Grid.Column="0">
+                                    <cs:CustomEntry  x:Name="step1" TextChanged="step1_TextChanged" Keyboard="Numeric" MaxLength="1" HorizontalTextAlignment="Center"  BackgroundColor="White" TextColor="Black" />
+
+                                </Frame>
+                                <Frame BorderColor="#e5e5e5" Grid.Column="1"  HasShadow="False" Padding="5" CornerRadius="5">
+                                    <cs:CustomEntry x:Name="step2"   TextChanged="step2_TextChanged" Keyboard="Numeric" MaxLength="1" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black"/>
+
+                                </Frame>
+                                <Frame  BorderColor="#e5e5e5" Grid.Column="2" HasShadow="False" Padding="5" CornerRadius="5">
+                                    <cs:CustomEntry x:Name="step3"   TextChanged="step3_TextChanged"  Keyboard="Numeric" MaxLength="1" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" />
+
+                                </Frame>
+                                <Frame BorderColor="#e5e5e5" Grid.Column="3" HasShadow="False" Padding="5" CornerRadius="5">
+                                    <cs:CustomEntry x:Name="step4"   TextChanged="step4_TextChanged" Keyboard="Numeric" MaxLength="1" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" />
+
+                                </Frame>
+                            </Grid>
+
+                        </StackLayout>
+                        <StackLayout>
+                            <Label Text="{Static resx:AppResources.ResendCode}" TextColor="#0C4B81" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="20">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Text="2:00" x:Name="counter" FontAttributes="Bold"  TextColor="Black" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+                        </StackLayout>
+                        <StackLayout Padding="30" Spacing="30">
+                            <!--<Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="If you didnt receive a code! " FontSize="15" TextColor="Black"  FontFamily="fontdefault"/>
+                                    <Span Text="Resend" FontSize="15" TextColor="#008797"  FontFamily="fontdefault"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>-->
+                            <Button Text="{Static resx:AppResources.VerifyCode}" TextTransform="None" Clicked="Button_Clicked"   BackgroundColor="#0C4B81" FontFamily="fontdefault"  TextColor="White" CornerRadius="5" HorizontalOptions="Fill" />
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

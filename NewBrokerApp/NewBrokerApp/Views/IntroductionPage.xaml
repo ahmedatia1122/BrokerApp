@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+               FlowDirection="LeftToRight"
+                 xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:resx="clr-namespace:NewBrokerApp.Resources" 
+             x:Class="NewBrokerApp.Views.IntroductionPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HeightRequest="60" BackgroundColor="Transparent"></StackLayout>
+            <Image Source="cuate.png" HeightRequest="250" Aspect="AspectFit"></Image>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="20" Margin="30">
+                <Label Text="{Static resx:AppResources.WelcomeToBroker}" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" FontSize="20"></Label>
+
+                <Frame BackgroundColor="#034C82"  CornerRadius="15"  Padding="15" HasShadow="False">
+                    <Label Text="{Static resx:AppResources.Signin}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="18"></Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenLoginPageCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame BackgroundColor="#034C82" CornerRadius="15" Padding="15" HasShadow="False">
+                    <Label Text="{Static resx:AppResources.CreateAccount}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="18"></Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenChooseAccountCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame BackgroundColor="#034C82" CornerRadius="15" Padding="15" HasShadow="False">
+                    <Label Text="{Static resx:AppResources.GotoMap}" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="18"></Label>
+                    
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenHomePageCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+        
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

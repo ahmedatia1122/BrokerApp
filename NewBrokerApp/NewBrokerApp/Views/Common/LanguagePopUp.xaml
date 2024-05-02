@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:rg="http://rotorgames.com"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:resx="clr-namespace:NewBrokerApp.Resources"
+                xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="NewBrokerApp.Views.Common.LanguagePopUp">
+    <rg:PopupPage.Animation>
+        <rg:ScaleAnimation
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="Linear"
+            EasingOut="Linear"
+            HasBackgroundAnimation="True"
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            ScaleIn="1.2"
+            ScaleOut="0.8" />
+    </rg:PopupPage.Animation>
+
+    <PanCake:PancakeView  Margin="0,30,0,0" VerticalOptions="End"  BackgroundColor="#fff" HeightRequest="380" WidthRequest="390"  CornerRadius="20,20,0,0" 
+                                              Padding="20,20,20,20" IsClippedToBounds="False"  >
+        <PanCake:PancakeView.Border>
+            <PanCake:Border Color="#ccc" Thickness="1"/>
+        </PanCake:PancakeView.Border>
+        <PanCake:PancakeView.Shadow>
+            <PanCake:DropShadow Color="#ccc" Offset="1,1"  />
+        </PanCake:PancakeView.Shadow>
+
+        <StackLayout VerticalOptions="FillAndExpand" >
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" Text="{Static resx:AppResources.SelectLanguage}" FontAttributes="Bold" TextColor="Black" FontSize="19"/>
+                        <ffimageloadingsvg:SvgCachedImage  
+                        Grid.Column="0"  Source="Vectors.svg" HorizontalOptions="End" 
+                        WidthRequest="15" HeightRequest="15" VerticalOptions="Start">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </StackLayout>
+                    <BoxView HeightRequest="2" HorizontalOptions="FillAndExpand" Color="WhiteSmoke"></BoxView>
+
+                    <StackLayout  Spacing="15" VerticalOptions="CenterAndExpand">
+                        <ffimageloadingsvg:SvgCachedImage Aspect="AspectFit" Source="panaAd.svg" HeightRequest="200" ></ffimageloadingsvg:SvgCachedImage>
+                        <Frame BackgroundColor="#034C82" HasShadow="False" Padding="5" CornerRadius="10">
+                            <Label 
+                            BackgroundColor="Transparent"
+                        Text="English"
+                            FontSize="20" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource Primary}" >
+                            </Label>
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer Tapped="TappedChangedEn"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        
+                     
+                        <Frame BackgroundColor="#C8A455" HasShadow="False" Padding="5" CornerRadius="10">
+                            <Label  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"
+                            BackgroundColor="Transparent"
+                        Text="عربي"
+                            FontSize="20"
+                        TextColor="{StaticResource Primary}" >
+                              
+                            </Label>
+                            <Frame.GestureRecognizers >
+                                <TapGestureRecognizer Tapped="TappedChangedAr"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                       
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+    </PanCake:PancakeView>
+    </rg:PopupPage>
